@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -87,7 +87,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   return (
     <motion.div
       ref={cardRef}
-      className="relative flex-shrink-0 w-[300px] md:w-[380px] h-[420px] md:h-[500px] perspective-[1000px] group"
+      className="relative flex-shrink-0 w-full md:w-[380px] h-[450px] md:h-[500px] perspective-[1000px] group"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ zIndex: 10 - index }}
@@ -119,7 +119,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
           />
         </div>
 
-        {/* Animated Glow Blob (Reduced intensity for image compatibility) */}
+        {/* Animated Glow Blob */}
         <motion.div 
           className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[80px] opacity-20 mix-blend-screen pointer-events-none"
           style={{ backgroundColor: service.blobColor }}
@@ -182,27 +182,43 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
 
 const DistinctiveServices: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
+    offset: ["start start", "end end"]
   });
 
   // Calculate transform range based on array length
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[350vh] bg-[#050505] border-t border-white/5">
+    <section 
+      ref={targetRef} 
+      className={`relative bg-[#050505] border-t border-white/5 ${isDesktop ? 'h-[300vh]' : 'py-16 md:py-24'}`}
+    >
       
-      {/* Sticky Container */}
-      <div className="sticky top-0 h-screen flex flex-col md:flex-row overflow-hidden">
+      {/* Sticky Container Wrapper */}
+      <div className={isDesktop ? 'sticky top-0 h-screen flex flex-row overflow-hidden' : 'flex flex-col relative'}>
         
         {/* LEFT COLUMN: Static Title Section */}
-        <div className="w-full md:w-[40%] h-[30vh] md:h-full flex flex-col justify-center px-6 md:px-12 lg:px-16 relative z-20 bg-[#050505] border-b md:border-b-0 md:border-r border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+        <div className={`
+          ${isDesktop ? 'w-[40%] h-full border-r border-white/5' : 'w-full h-auto border-b border-white/5 pb-12 mb-12'} 
+          flex flex-col justify-center px-6 md:px-12 lg:px-16 relative z-20 bg-[#050505] shadow-[0_0_50px_rgba(0,0,0,0.8)]
+        `}>
            {/* Background Ambient Effects (Confined to Left Col) */}
            <div className="absolute inset-0 pointer-events-none overflow-hidden">
                <div className="absolute top-[-20%] left-[-20%] w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full" />
            </div>
 
-           <div className="relative z-10">
+           <div className="relative z-10 pt-8 md:pt-0">
               <span className="inline-block px-3 py-1 mb-4 md:mb-6 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
                 Our Capabilities
               </span>
@@ -214,7 +230,7 @@ const DistinctiveServices: React.FC = () => {
                 Function.
               </h2>
               <p className="text-white-dim text-base md:text-lg leading-relaxed mb-8 max-w-md">
-                A horizontal deep dive into our core services. We blend aesthetics with architecture to build digital products that scale.
+                A deep dive into our core services. We blend aesthetics with architecture to build digital products that scale.
               </p>
               
               <div className="hidden md:flex items-center gap-3">
@@ -226,20 +242,26 @@ const DistinctiveServices: React.FC = () => {
            </div>
         </div>
 
-        {/* RIGHT COLUMN: Horizontal Scroll Area */}
-        <div className="w-full md:w-[60%] h-[70vh] md:h-full relative z-10 overflow-hidden bg-[#050505] flex items-center">
+        {/* RIGHT COLUMN: Horizontal Scroll Area (Desktop) / Vertical Stack (Mobile) */}
+        <div className={`
+          ${isDesktop ? 'w-[60%] h-full flex items-center overflow-hidden' : 'w-full h-auto overflow-visible'} 
+          bg-[#050505] relative z-10
+        `}>
             
-            {/* Horizontal Track */}
+            {/* Track */}
             <motion.div 
-              style={{ x }} 
-              className="flex gap-6 md:gap-12 px-6 md:px-12 items-center flex-nowrap"
+              style={{ x: isDesktop ? x : 0 }} 
+              className={`
+                flex 
+                ${isDesktop ? 'flex-row gap-12 px-12 items-center h-full' : 'flex-col gap-8 px-4 w-full pb-12'}
+              `}
             >
               {SERVICES.map((service, index) => (
                 <ServiceCard key={index} service={service} index={index} />
               ))}
               
               {/* End Card CTA */}
-              <div className="flex-shrink-0 w-[300px] md:w-[380px] h-[420px] md:h-[500px] flex flex-col items-center justify-center text-center p-8 rounded-[2rem] border border-white/5 bg-white/[0.02]">
+              <div className={`flex-shrink-0 ${isDesktop ? 'w-[380px] h-[500px]' : 'w-full h-[300px]'} flex flex-col items-center justify-center text-center p-8 rounded-[2rem] border border-white/5 bg-white/[0.02]`}>
                 <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full" />
                     <h3 className="relative text-3xl md:text-5xl font-bold text-white mb-6">Ready to <br/>Start?</h3>
@@ -258,16 +280,9 @@ const DistinctiveServices: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Fade Overlay on Right Edge */}
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050505] to-transparent pointer-events-none z-20" />
+            {/* Fade Overlay on Right Edge (Desktop only) */}
+            {isDesktop && <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050505] to-transparent pointer-events-none z-20" />}
             
-            {/* Progress Bar Bottom (Mobile Only) */}
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5 md:hidden">
-              <motion.div 
-                style={{ scaleX: scrollYProgress }} 
-                className="h-full bg-primary origin-left shadow-[0_0_10px_#10B981]" 
-              />
-            </div>
         </div>
 
       </div>
