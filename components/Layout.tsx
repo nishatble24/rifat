@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const BANNER_HEIGHT = 48;
 
   return (
-    <div className="min-h-screen bg-background text-white selection:bg-primary selection:text-black">
+    <div className="min-h-screen w-full overflow-x-hidden bg-background text-white selection:bg-primary selection:text-black relative">
       <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
          {/* Background Ambient Glows */}
          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full" />
@@ -49,7 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Header bannerOffset={showBanner ? BANNER_HEIGHT : 0} />
       
       <main 
-        className="relative z-10 transition-all duration-300 ease-in-out" 
+        className="relative z-10 w-full transition-all duration-300 ease-in-out" 
         style={{ paddingTop: showBanner ? `calc(5rem + ${BANNER_HEIGHT}px)` : '5rem' }}
       >
         {children}

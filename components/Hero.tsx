@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, Variants } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -67,12 +66,12 @@ const Hero: React.FC = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] flex flex-col items-center justify-start pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-[#050505]"
+      className="relative min-h-[100vh] flex flex-col items-center justify-start pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-[#050505] w-full"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
       {/* 1. Core Staging & Backdrop */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[#050505]" />
         <div className="absolute inset-0 bg-grid-white opacity-[0.03]" />
 
@@ -110,7 +109,7 @@ const Hero: React.FC = () => {
                    <motion.span 
                      key={i} 
                      variants={wordVariants}
-                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white break-words"
                    >
                      {word}
                    </motion.span>
@@ -123,14 +122,14 @@ const Hero: React.FC = () => {
                    <motion.span 
                      key={`l2-${i}`} 
                      variants={wordVariants}
-                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white break-words"
                    >
                      {word}
                    </motion.span>
                  ))}
                  <motion.span 
                    variants={wordVariants}
-                   className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 drop-shadow-[0_0_15px_rgba(1,208,245,0.5)]"
+                   className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 drop-shadow-[0_0_15px_rgba(1,208,245,0.5)] break-words"
                  >
                    Results.
                  </motion.span>
