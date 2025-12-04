@@ -99,36 +99,52 @@ const Hero: React.FC = () => {
         
         {/* 2. Dynamic Typography */}
         <motion.div 
-          className="text-center mb-8 md:mb-12 relative z-20"
+          className="text-center mb-8 md:mb-10 relative z-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={wordVariants} className="flex justify-center mb-8">
-              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-16 md:h-24 w-auto opacity-90" />
+          <motion.div variants={wordVariants} className="flex justify-center mb-6">
+              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-10 md:h-14 w-auto opacity-90" />
           </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-6 gap-y-2 mb-4">
-             {["We", "Design", "Products", "That", "Drive"].map((word, i) => (
-               <motion.span 
-                 key={i} 
-                 variants={wordVariants}
-                 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white"
-               >
-                 {word}
-               </motion.span>
-             ))}
-             <motion.span 
-               variants={wordVariants}
-               className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 drop-shadow-[0_0_15px_rgba(1,208,245,0.5)]"
-             >
-               Results.
-             </motion.span>
+          <div className="flex flex-col items-center gap-1 md:gap-2 mb-4">
+             {/* Line 1 */}
+             <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+                {["We", "Design", "Products"].map((word, i) => (
+                   <motion.span 
+                     key={i} 
+                     variants={wordVariants}
+                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+                   >
+                     {word}
+                   </motion.span>
+                 ))}
+             </div>
+             
+             {/* Line 2 */}
+             <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+                 {["That", "Drive"].map((word, i) => (
+                   <motion.span 
+                     key={`l2-${i}`} 
+                     variants={wordVariants}
+                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+                   >
+                     {word}
+                   </motion.span>
+                 ))}
+                 <motion.span 
+                   variants={wordVariants}
+                   className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-cyan-600 drop-shadow-[0_0_15px_rgba(1,208,245,0.5)]"
+                 >
+                   Results.
+                 </motion.span>
+             </div>
           </div>
           
           <motion.div 
             variants={wordVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 md:mt-10"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 md:mt-8"
           >
              <div className="flex -space-x-4 items-center">
                {[
@@ -136,15 +152,15 @@ const Hero: React.FC = () => {
                   "https://ik.imagekit.io/flowrax/cl.jpg",
                   "https://ik.imagekit.io/flowrax/cl%20(1)%20dd_1.webp?updatedAt=1764806666597"
                 ].map((src, i) => (
-                 <div key={i} className="relative w-12 h-12 rounded-full border-2 border-[#050505] overflow-hidden shadow-lg">
+                 <div key={i} className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#050505] overflow-hidden shadow-lg">
                    <img src={src} alt={`Trusted Founder ${i+1}`} className="w-full h-full object-cover" />
                  </div>
                ))}
-               <div className="relative w-12 h-12 rounded-full border-2 border-[#050505] bg-white flex items-center justify-center shadow-lg z-10">
-                 <span className="text-black font-extrabold text-sm">50+</span>
+               <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#050505] bg-white flex items-center justify-center shadow-lg z-10">
+                 <span className="text-black font-extrabold text-xs md:text-sm">50+</span>
                </div>
              </div>
-             <p className="text-white-dim text-base md:text-lg font-medium">
+             <p className="text-white-dim text-sm md:text-base font-medium">
                Trusted by <span className="text-white font-bold">50+ founders</span>
              </p>
           </motion.div>
@@ -155,22 +171,22 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 mb-12 md:mb-20 relative z-20 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-center gap-4 md:gap-5 mb-12 md:mb-16 relative z-20 w-full sm:w-auto"
         >
           <a 
             href="https://cal.com/flowrax/project-discussion"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative w-full sm:w-auto px-8 py-4 bg-primary text-black font-bold text-lg rounded-full overflow-hidden transition-transform active:scale-95 text-center"
+            className="group relative w-full sm:w-auto px-5 py-2.5 bg-primary text-black font-bold text-sm md:text-base rounded-full overflow-hidden transition-transform active:scale-95 text-center"
           >
              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
              <span className="relative z-10 flex items-center justify-center gap-2">
-               Get in Touch <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+               Get in Touch <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
              </span>
              <div className="absolute inset-0 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] bg-primary/30 z-[-1]" />
           </a>
 
-          <Link to="/work" className="group relative w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-semibold text-lg rounded-full overflow-hidden transition-all hover:border-primary hover:text-primary active:scale-95 text-center">
+          <Link to="/work" className="group relative w-full sm:w-auto px-5 py-2.5 bg-transparent border border-white/20 text-white font-semibold text-sm md:text-base rounded-full overflow-hidden transition-all hover:border-primary hover:text-primary active:scale-95 text-center">
              <span className="relative z-10 flex items-center justify-center gap-2">
                See Our Work
              </span>
@@ -215,3 +231,4 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+    
