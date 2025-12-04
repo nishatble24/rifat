@@ -119,7 +119,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
           />
         </div>
 
-        {/* Animated Glow Blob */}
+        {/* Animated Glow Blob (Reduced intensity for image compatibility) */}
         <motion.div 
           className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[80px] opacity-20 mix-blend-screen pointer-events-none"
           style={{ backgroundColor: service.blobColor }}
@@ -193,32 +193,25 @@ const DistinctiveServices: React.FC = () => {
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "end end"]
   });
 
   // Calculate transform range based on array length
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
 
   return (
-    <section 
-      ref={targetRef} 
-      className={`relative bg-[#050505] border-t border-white/5 ${isDesktop ? 'h-[300vh]' : 'py-16 md:py-24'}`}
-    >
+    <section ref={targetRef} className={`relative bg-[#050505] border-t border-white/5 ${isDesktop ? 'h-[350vh]' : 'py-24'}`}>
       
-      {/* Sticky Container Wrapper */}
-      <div className={isDesktop ? 'sticky top-0 h-screen flex flex-row overflow-hidden' : 'flex flex-col relative'}>
+      {/* Sticky Container */}
+      <div className={`${isDesktop ? 'sticky top-0 h-screen overflow-hidden' : 'relative'} flex flex-col md:flex-row`}>
         
         {/* LEFT COLUMN: Static Title Section */}
-        <div className={`
-          ${isDesktop ? 'w-[40%] h-full border-r border-white/5' : 'w-full h-auto border-b border-white/5 pb-12 mb-12'} 
-          flex flex-col justify-center px-6 md:px-12 lg:px-16 relative z-20 bg-[#050505] shadow-[0_0_50px_rgba(0,0,0,0.8)]
-        `}>
+        <div className={`w-full md:w-[40%] ${isDesktop ? 'h-full' : 'h-auto mb-16'} flex flex-col justify-center px-6 md:px-12 lg:px-16 relative z-20 bg-[#050505] border-b md:border-b-0 md:border-r border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.8)] pb-12 md:pb-0`}>
            {/* Background Ambient Effects (Confined to Left Col) */}
            <div className="absolute inset-0 pointer-events-none overflow-hidden">
                <div className="absolute top-[-20%] left-[-20%] w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full" />
            </div>
 
-           <div className="relative z-10 pt-8 md:pt-0">
+           <div className="relative z-10 pt-12 md:pt-0">
               <span className="inline-block px-3 py-1 mb-4 md:mb-6 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
                 Our Capabilities
               </span>
@@ -243,25 +236,19 @@ const DistinctiveServices: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN: Horizontal Scroll Area (Desktop) / Vertical Stack (Mobile) */}
-        <div className={`
-          ${isDesktop ? 'w-[60%] h-full flex items-center overflow-hidden' : 'w-full h-auto overflow-visible'} 
-          bg-[#050505] relative z-10
-        `}>
+        <div className={`w-full md:w-[60%] ${isDesktop ? 'h-full' : 'h-auto'} relative z-10 overflow-hidden bg-[#050505] flex items-center`}>
             
             {/* Track */}
             <motion.div 
               style={{ x: isDesktop ? x : 0 }} 
-              className={`
-                flex 
-                ${isDesktop ? 'flex-row gap-12 px-12 items-center h-full' : 'flex-col gap-8 px-4 w-full pb-12'}
-              `}
+              className={`${isDesktop ? 'flex-row gap-12 px-12 items-center flex-nowrap' : 'flex-col gap-8 px-4 w-full'} flex`}
             >
               {SERVICES.map((service, index) => (
                 <ServiceCard key={index} service={service} index={index} />
               ))}
               
               {/* End Card CTA */}
-              <div className={`flex-shrink-0 ${isDesktop ? 'w-[380px] h-[500px]' : 'w-full h-[300px]'} flex flex-col items-center justify-center text-center p-8 rounded-[2rem] border border-white/5 bg-white/[0.02]`}>
+              <div className={`flex-shrink-0 ${isDesktop ? 'w-[380px] h-[500px]' : 'w-full h-[400px]'} flex flex-col items-center justify-center text-center p-8 rounded-[2rem] border border-white/5 bg-white/[0.02]`}>
                 <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full" />
                     <h3 className="relative text-3xl md:text-5xl font-bold text-white mb-6">Ready to <br/>Start?</h3>
