@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
           animate="visible"
         >
           <motion.div variants={wordVariants} className="flex justify-center mb-8">
-              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-24 md:h-32 w-auto opacity-90" />
+              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-16 md:h-24 w-auto opacity-90" />
           </motion.div>
 
           <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-6 gap-y-2 mb-4">
