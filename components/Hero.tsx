@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, Variants } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -99,7 +100,7 @@ const Hero: React.FC = () => {
           animate="visible"
         >
           <motion.div variants={wordVariants} className="flex justify-center mb-4 md:mb-6">
-              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-8 md:h-12 w-auto opacity-90" />
+              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-10 md:h-14 w-auto opacity-90" />
           </motion.div>
 
           <div className="flex flex-col items-center gap-0.5 md:gap-2 mb-6">
