@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { HashRouter, Routes, Route, useParams, Link } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -19,6 +20,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import WorkPage from './components/WorkPage';
 import UiUxDesignPage from './components/UiUxDesignPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
+import AboutUs from './components/AboutUs';
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
             <>
               <Hero />
               <SocialProof />
+              <AboutUs />
               <Services />
               <WhyChooseUs />
               <Workflow />
