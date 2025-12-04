@@ -9,22 +9,17 @@ const Hero: React.FC = () => {
   const { scrollY } = useScroll();
   
   // Scroll Parallax for Video Scale
-  // "Reverse": Starts smaller (0.9) and grows "open in big way" (1.1) as user scrolls down
   const dashboardScale = useTransform(scrollY, [0, 500], [0.9, 1.1]);
-  // Opacity stays 1 (fully visible) instead of fading out
   const dashboardOpacity = useTransform(scrollY, [0, 300], [1, 1]);
-  // Move down slightly to enhance the growing effect
   const dashboardY = useTransform(scrollY, [0, 500], [0, 50]);
 
   // --- 3D Tilt Logic ---
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
-  // Smooth out the mouse values
   const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 });
   const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 });
 
-  // Map mouse values to rotation degrees
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [10, -10]); 
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-10, 10]);
 
@@ -72,7 +67,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] flex flex-col items-center justify-start pt-20 md:pt-28 pb-12 md:pb-20 overflow-hidden bg-[#050505]"
+      className="relative min-h-[100vh] flex flex-col items-center justify-start pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden bg-[#050505]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -99,18 +94,18 @@ const Hero: React.FC = () => {
         
         {/* 2. Dynamic Typography */}
         <motion.div 
-          className="text-center mb-8 md:mb-10 relative z-20"
+          className="text-center mb-8 md:mb-10 relative z-20 w-full"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={wordVariants} className="flex justify-center mb-6">
-              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-10 md:h-14 w-auto opacity-90" />
+          <motion.div variants={wordVariants} className="flex justify-center mb-4 md:mb-6">
+              <img src="https://ik.imagekit.io/flowrax/hhh.png" alt="Agency Logo" className="h-8 md:h-12 w-auto opacity-90" />
           </motion.div>
 
-          <div className="flex flex-col items-center gap-1 md:gap-2 mb-4">
+          <div className="flex flex-col items-center gap-0.5 md:gap-2 mb-6">
              {/* Line 1 */}
-             <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+             <div className="flex flex-wrap justify-center gap-x-1.5 md:gap-x-4 px-2">
                 {["We", "Design", "Products"].map((word, i) => (
                    <motion.span 
                      key={i} 
@@ -123,7 +118,7 @@ const Hero: React.FC = () => {
              </div>
              
              {/* Line 2 */}
-             <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+             <div className="flex flex-wrap justify-center gap-x-1.5 md:gap-x-4 px-2">
                  {["That", "Drive"].map((word, i) => (
                    <motion.span 
                      key={`l2-${i}`} 
@@ -171,13 +166,13 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center gap-4 md:gap-5 mb-12 md:mb-16 relative z-20 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-center gap-3 md:gap-5 mb-12 md:mb-16 relative z-20 w-full sm:w-auto px-8 sm:px-0"
         >
           <a 
             href="https://cal.com/flowrax/project-discussion"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative w-full sm:w-auto px-5 py-2.5 bg-primary text-black font-bold text-sm md:text-base rounded-full overflow-hidden transition-transform active:scale-95 text-center"
+            className="group relative w-full sm:w-auto px-6 py-3 md:px-8 md:py-3.5 bg-primary text-black font-bold text-sm md:text-base rounded-full overflow-hidden transition-transform active:scale-95 text-center"
           >
              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
              <span className="relative z-10 flex items-center justify-center gap-2">
@@ -186,7 +181,7 @@ const Hero: React.FC = () => {
              <div className="absolute inset-0 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] bg-primary/30 z-[-1]" />
           </a>
 
-          <Link to="/work" className="group relative w-full sm:w-auto px-5 py-2.5 bg-transparent border border-white/20 text-white font-semibold text-sm md:text-base rounded-full overflow-hidden transition-all hover:border-primary hover:text-primary active:scale-95 text-center">
+          <Link to="/work" className="group relative w-full sm:w-auto px-6 py-3 md:px-8 md:py-3.5 bg-transparent border border-white/20 text-white font-semibold text-sm md:text-base rounded-full overflow-hidden transition-all hover:border-primary hover:text-primary active:scale-95 text-center">
              <span className="relative z-10 flex items-center justify-center gap-2">
                See Our Work
              </span>
@@ -231,4 +226,3 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
-    
