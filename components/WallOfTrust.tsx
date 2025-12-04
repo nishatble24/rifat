@@ -59,7 +59,7 @@ const TrustCard: React.FC<TrustCardProps> = ({ type, content, featured }) => {
         <img 
           src={content.avatar} 
           alt={content.author} 
-          className="w-10 h-10 rounded-full border border-white/10"
+          className="w-10 h-10 rounded-full border border-white/10 object-cover"
         />
         <div>
           <h4 className="text-sm font-semibold text-white">{content.author}</h4>
@@ -78,7 +78,7 @@ const COL_1 = [
       quote: "The level of detail in their design systems is unmatched. It scaled perfectly.",
       author: "Alex Rivera",
       role: "Product Lead at Stripe",
-      avatar: "https://picsum.photos/100/100?random=20"
+      avatar: "https://ik.imagekit.io/flowrax/cl%20(2)%20dd.webp?updatedAt=1764806666639"
     }
   },
   {
@@ -104,7 +104,7 @@ const COL_2 = [
       quote: "We redefined our entire brand identity in just 4 weeks. The velocity was insane.",
       author: "Elena Foster",
       role: "CEO at Novus",
-      avatar: "https://picsum.photos/100/100?random=21"
+      avatar: "https://ik.imagekit.io/flowrax/cl.jpg"
     }
   },
   {
@@ -113,7 +113,7 @@ const COL_2 = [
       quote: "A true partnership. They didn't just take orders, they challenged our assumptions.",
       author: "David Kim",
       role: "Founder at Stack",
-      avatar: "https://picsum.photos/100/100?random=22"
+      avatar: "https://ik.imagekit.io/flowrax/cl%20(1)%20dd_1.webp?updatedAt=1764806666597"
     }
   }
 ];
@@ -129,7 +129,7 @@ const COL_3 = [
       quote: "Our user retention jumped 40% after the UX overhaul.",
       author: "Sarah Jenkins",
       role: "Head of Growth",
-      avatar: "https://picsum.photos/100/100?random=23"
+      avatar: "https://ik.imagekit.io/flowrax/clw.webp"
     },
     featured: true
   },

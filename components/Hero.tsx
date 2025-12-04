@@ -139,23 +139,23 @@ const Hero: React.FC = () => {
           
           <motion.div 
             variants={wordVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 md:mt-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4 md:mt-6"
           >
-             <div className="flex -space-x-4 items-center">
+             <div className="flex -space-x-3 items-center">
                {[
                   "https://ik.imagekit.io/flowrax/cl%20(2)%20dd.webp?updatedAt=1764806666639",
                   "https://ik.imagekit.io/flowrax/cl.jpg",
                   "https://ik.imagekit.io/flowrax/cl%20(1)%20dd_1.webp?updatedAt=1764806666597"
                 ].map((src, i) => (
-                 <div key={i} className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#050505] overflow-hidden shadow-lg">
+                 <div key={i} className="relative w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-[#050505] overflow-hidden shadow-lg">
                    <img src={src} alt={`Trusted Founder ${i+1}`} className="w-full h-full object-cover" />
                  </div>
                ))}
-               <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#050505] bg-white flex items-center justify-center shadow-lg z-10">
-                 <span className="text-black font-extrabold text-xs md:text-sm">50+</span>
+               <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-[#050505] bg-white flex items-center justify-center shadow-lg z-10">
+                 <span className="text-black font-extrabold text-[10px] md:text-xs">50+</span>
                </div>
              </div>
-             <p className="text-white-dim text-sm md:text-base font-medium">
+             <p className="text-white-dim text-xs md:text-sm font-medium">
                Trusted by <span className="text-white font-bold">50+ founders</span>
              </p>
           </motion.div>
