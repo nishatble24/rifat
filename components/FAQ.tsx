@@ -50,16 +50,18 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, isOpen, onClick, index }) => {
     <motion.div
       initial={false}
       animate={{
-        backgroundColor: isOpen ? "rgba(10, 10, 10, 1)" : "rgba(255, 255, 255, 0)",
+        // Use rgba(10,10,10,0) instead of rgba(255,255,255,0) to prevent white flash during interpolation
+        backgroundColor: isOpen ? "rgba(10, 10, 10, 1)" : "rgba(10, 10, 10, 0)",
         borderColor: isOpen ? "rgba(16, 185, 129, 0.5)" : "rgba(255, 255, 255, 0.05)",
       }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`border rounded-2xl overflow-hidden transition-shadow duration-300 ${
         isOpen ? 'shadow-[0_0_30px_-10px_rgba(16,185,129,0.15)]' : ''
       }`}
     >
       <button
         onClick={onClick}
-        className="w-full flex items-start gap-6 p-6 md:p-8 text-left group"
+        className="w-full flex items-start gap-6 p-6 md:p-8 text-left group focus:outline-none"
       >
         <span className={`text-sm font-mono mt-1 transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-white/30'}`}>
           {String(index + 1).padStart(2, '0')}
