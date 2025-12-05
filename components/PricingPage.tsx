@@ -4,6 +4,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Check, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedSection from './ui/AnimatedSection';
+import WhyChooseUs from './WhyChooseUs';
 
 type BillingCycle = 'monthly' | 'quarterly' | 'yearly';
 
@@ -91,12 +92,12 @@ const PricingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] pt-32 pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] pt-32 pb-0 relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-grid-white opacity-[0.03] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 pb-24">
         
         {/* Header Section */}
         <AnimatedSection className="text-center mb-16">
@@ -248,8 +249,10 @@ const PricingPage: React.FC = () => {
               Need a custom plan for a large organization? <Link to="/contact" className="text-primary hover:underline">Contact our sales team</Link>.
             </p>
         </AnimatedSection>
-
       </div>
+
+      {/* Why Flowrax Section */}
+      <WhyChooseUs />
     </div>
   );
 };

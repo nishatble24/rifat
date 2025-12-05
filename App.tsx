@@ -13,12 +13,12 @@ import PricingPage from './components/PricingPage';
 import FAQ from './components/FAQ';
 import Workflow from './components/Workflow';
 import Impact from './components/Impact';
-import TechStack from './components/TechStack';
 import WallOfTrust from './components/WallOfTrust';
 import SocialProof from './components/SocialProof';
 import WhyChooseUs from './components/WhyChooseUs';
 import WorkPage from './components/WorkPage';
 import UiUxDesignPage from './components/UiUxDesignPage';
+import WebDesignPage from './components/WebDesignPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import AboutUs from './components/AboutUs';
 
@@ -41,7 +41,6 @@ function App() {
               <DistinctiveServices />
               <Pricing />
               <WallOfTrust />
-              <TechStack />
               <FAQ />
             </>
           } />
@@ -49,6 +48,7 @@ function App() {
           <Route path="/work" element={<WorkPage />} />
           <Route path="/work/:id" element={<ProjectDetailPage />} />
           <Route path="/services/ui-ux-design" element={<UiUxDesignPage />} />
+          <Route path="/services/web-design" element={<WebDesignPage />} />
           <Route path="/pricing" element={<PricingPage />} />
         </Routes>
       </Layout>

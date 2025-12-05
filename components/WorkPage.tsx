@@ -5,6 +5,7 @@ import { PROJECTS } from '../constants';
 import AnimatedSection from './ui/AnimatedSection';
 import { ArrowUpRight, Quote, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import WhyChooseUs from './WhyChooseUs';
 
 const FILTERS = ['All Projects', 'UI/UX', 'Branding', 'Mobile Apps'];
 
@@ -137,6 +138,12 @@ const WorkPage: React.FC = () => {
           </div>
         )}
 
+      </div>
+
+      {/* Why Flowrax Section */}
+      <WhyChooseUs />
+
+      <div className="max-w-[90rem] mx-auto px-6 relative z-10 mb-24">
         {/* Testimonial Spotlight Section */}
         <AnimatedSection className="py-24 relative rounded-3xl overflow-hidden border border-white/5 bg-[#080808]">
           {/* Backgrounds */}

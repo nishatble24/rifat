@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MousePointer2, Palette, Layers } from 'lucide-react';
+import WhyChooseUs from './WhyChooseUs';
 
 const UiUxDesignPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -221,13 +222,8 @@ const UiUxDesignPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Placeholder for further content */}
-      <section className="py-24 border-t border-white/5 bg-black">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-           <h2 className="text-3xl font-bold mb-4">Our UI/UX Process</h2>
-           <p className="text-white-dim">More content coming soon...</p>
-        </div>
-      </section>
+      {/* Why Flowrax Section */}
+      <WhyChooseUs />
 
     </div>
   );

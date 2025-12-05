@@ -100,8 +100,15 @@ const Contact: React.FC = () => {
 
             {/* Right Column: Form Fields */}
             <div className="bg-[#0A0A0A] p-8 md:p-12 lg:p-16 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-white/5">
-               <form className="space-y-6">
-                  
+               <form 
+                 className="space-y-6"
+                 action="https://formspree.io/f/mqarlpwy"
+                 method="POST"
+               >
+                  {/* Hidden Inputs for Formspree */}
+                  <input type="hidden" name="budget" value={selectedBudget} />
+                  <input type="hidden" name="_redirect" value="/thank-you" />
+
                   {/* Name */}
                   <div className="group">
                     <label className="block text-xs font-bold text-white-dim uppercase tracking-wider mb-2 ml-1">Your Name</label>
@@ -111,6 +118,7 @@ const Contact: React.FC = () => {
                          type="text" 
                          name="name"
                          placeholder="John Doe"
+                         required
                          className="bg-transparent w-full text-white placeholder:text-white/20 focus:outline-none"
                          onFocus={() => setFocusedField('name')}
                          onBlur={() => setFocusedField(null)}
@@ -128,6 +136,7 @@ const Contact: React.FC = () => {
                            type="email" 
                            name="email"
                            placeholder="john@company.com"
+                           required
                            className="bg-transparent w-full text-white placeholder:text-white/20 focus:outline-none"
                            onFocus={() => setFocusedField('email')}
                            onBlur={() => setFocusedField(null)}
@@ -141,7 +150,7 @@ const Contact: React.FC = () => {
                          <Phone size={18} className={`mr-3 transition-colors ${focusedField === 'phone' ? 'text-primary' : 'text-white/40'}`} />
                          <input 
                            type="tel" 
-                           name="phone"
+                           name="whatsapp"
                            placeholder="+1 (555) 000-0000"
                            className="bg-transparent w-full text-white placeholder:text-white/20 focus:outline-none"
                            onFocus={() => setFocusedField('phone')}
@@ -197,6 +206,7 @@ const Contact: React.FC = () => {
                   <motion.button 
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    type="submit"
                     className="w-full py-4 rounded-xl font-bold text-black bg-primary shadow-[0_0_30px_-5px_rgba(1,208,245,0.5)] hover:shadow-[0_0_40px_-5px_rgba(1,208,245,0.7)] hover:bg-primary-glow transition-all flex items-center justify-center gap-2 group text-lg"
                   >
                     Let's Connect <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
