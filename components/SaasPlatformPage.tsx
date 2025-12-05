@@ -1,8 +1,8 @@
 
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Layers, BarChart3, Users, Settings, Bell, Search, Activity, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Layers, BarChart3, Users, Settings, Bell, Search, Activity, CheckCircle2, MoreHorizontal, Filter, Download, ChevronDown, Layout, Database, Lock, MousePointer2, CreditCard, PieChart, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import AnimatedSection from './ui/AnimatedSection';
 import WhyChooseUs from './WhyChooseUs';
 import WebDesignTechStack from './WebDesignTechStack';
@@ -245,10 +245,387 @@ const SaasHero: React.FC = () => {
   );
 };
 
+// --- EXPERTISE HOTSPOT SECTION ---
+
+const HOTSPOTS = [
+  {
+    id: 1,
+    title: "Navigation & IA",
+    description: "Complex hierarchies flattened into intuitive, scalable navigation systems.",
+    position: { top: '50%', left: '8%' },
+    targetArea: "sidebar",
+    icon: Layout,
+    label: "IA & Nav"
+  },
+  {
+    id: 2,
+    title: "Data Visualization",
+    description: "Charts and metrics designed for instant comprehension and decision making.",
+    position: { top: '35%', left: '60%' },
+    targetArea: "chart",
+    icon: BarChart3,
+    label: "Analytics"
+  },
+  {
+    id: 3,
+    title: "Table Design",
+    description: "Powerful data grids with filtering, sorting, and bulk actions users master quickly.",
+    position: { top: '80%', left: '55%' },
+    targetArea: "table",
+    icon: Database,
+    label: "Data Tables"
+  },
+  {
+    id: 4,
+    title: "Role-Based Access",
+    description: "Adaptive interfaces that transform based on user permissions and roles.",
+    position: { top: '6%', left: '92%' },
+    targetArea: "header",
+    icon: Lock,
+    label: "Security"
+  },
+   {
+    id: 5,
+    title: "System Config",
+    description: "Deep settings made manageable through progressive disclosure patterns.",
+    position: { top: '92%', left: '8%' },
+    targetArea: "settings",
+    icon: Settings,
+    label: "Settings"
+  },
+];
+
+const SaasExpertise: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeId, setActiveId] = useState<number | null>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+
+  // Auto-activate first hotspot when scrolled into view
+  useEffect(() => {
+    if (isInView && activeId === null) {
+      const timer = setTimeout(() => setActiveId(1), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
+
+  return (
+    <section ref={containerRef} className="py-24 md:py-32 bg-[#050505] relative border-t border-white/5 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-[#080808]" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Header */}
+        <AnimatedSection className="text-center mb-16 md:mb-24">
+          <span className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-4 block">Platform Expertise</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">We Know SaaS Inside Out</h2>
+          <p className="text-white-dim text-lg">Every feature. Every edge case. Designed for scale.</p>
+        </AnimatedSection>
+
+        <div className="relative">
+          
+          {/* Dashboard Visual Container */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full aspect-[4/5] md:aspect-[16/9] shadow-2xl flex flex-col group select-none"
+          >
+             
+             {/* --- DASHBOARD MOCKUP UI --- */}
+             {/* NOTE: We separate the UI into an inner container with overflow-hidden to clip content, 
+                 while keeping the main container free so tooltips can extend outside boundaries. */}
+             
+             <div className="absolute inset-0 bg-[#0A0A0A] rounded-2xl border border-white/10 overflow-hidden flex flex-col">
+                 
+                 {/* Header */}
+                 <motion.div 
+                   className={`h-16 border-b border-white/10 flex items-center justify-between px-6 transition-all duration-500 bg-[#0A0A0A] z-20 ${activeId && activeId !== 4 ? 'opacity-30 blur-[1px]' : 'opacity-100'}`}
+                 >
+                    <div className="flex items-center gap-4">
+                      <div className="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-500 flex items-center justify-center"><Activity size={18} /></div>
+                      <div className="w-px h-6 bg-white/10" />
+                      <div className="text-sm font-medium text-white/50">Dashboard / Analytics</div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                       <div className="relative hidden md:flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+                          <Search size={14} className="text-white/40" />
+                          <span className="text-xs text-white/40">Search clients...</span>
+                       </div>
+                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 border border-white/20 shadow-lg flex items-center justify-center text-[10px] font-bold">JD</div>
+                    </div>
+                 </motion.div>
+
+                 <div className="flex flex-1 overflow-hidden">
+                    {/* Sidebar */}
+                    <motion.div 
+                      className={`w-20 border-r border-white/10 flex flex-col items-center py-6 gap-6 bg-white/[0.01] transition-all duration-500 z-10 ${activeId && activeId !== 1 && activeId !== 5 ? 'opacity-30 blur-[1px]' : 'opacity-100'}`}
+                    >
+                       <div className="group/icon relative">
+                          <div className="p-3 rounded-xl bg-blue-600/10 text-blue-500"><Layout size={20} /></div>
+                          <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/icon:opacity-100 transition-opacity pointer-events-none">Dashboard</div>
+                       </div>
+                       <div className="group/icon relative">
+                          <div className="p-3 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors"><Users size={20} /></div>
+                       </div>
+                       <div className="group/icon relative">
+                          <div className="p-3 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors"><Database size={20} /></div>
+                       </div>
+                       <div className="group/icon relative">
+                          <div className="p-3 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors"><CreditCard size={20} /></div>
+                       </div>
+                       
+                       <div className="mt-auto group/icon relative">
+                          <div className="p-3 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors"><Settings size={20} /></div>
+                       </div>
+                    </motion.div>
+
+                    {/* Main Content */}
+                    <div className="flex-1 p-6 md:p-10 bg-[#080808] relative overflow-hidden flex flex-col">
+                       
+                       {/* KPI Grid - Realistic Data */}
+                       <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 transition-all duration-500 ${activeId ? 'opacity-30 blur-[1px]' : 'opacity-100'}`}>
+                          
+                          {/* KPI 1 */}
+                          <div className="bg-[#111] border border-white/5 p-5 rounded-xl flex flex-col justify-between h-32 relative overflow-hidden">
+                             <div className="absolute top-0 right-0 p-3 opacity-20"><Users size={40} /></div>
+                             <div className="text-white/40 text-[10px] uppercase font-bold tracking-wider mb-2">Active Users</div>
+                             <div>
+                                <div className="text-2xl font-bold text-white mb-1">24,593</div>
+                                <div className="flex items-center gap-1.5">
+                                   <span className="text-xs text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
+                                      <ArrowUpRight size={10} /> 12%
+                                   </span>
+                                   <span className="text-[10px] text-white/30">vs last month</span>
+                                </div>
+                             </div>
+                          </div>
+
+                          {/* KPI 2 */}
+                          <div className="bg-[#111] border border-white/5 p-5 rounded-xl flex flex-col justify-between h-32 relative overflow-hidden">
+                             <div className="absolute top-0 right-0 p-3 opacity-20"><PieChart size={40} /></div>
+                             <div className="text-white/40 text-[10px] uppercase font-bold tracking-wider mb-2">Churn Rate</div>
+                             <div>
+                                <div className="text-2xl font-bold text-white mb-1">1.2%</div>
+                                <div className="flex items-center gap-1.5">
+                                   <span className="text-xs text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
+                                      <ArrowDownRight size={10} /> 0.4%
+                                   </span>
+                                   <span className="text-[10px] text-white/30">improvement</span>
+                                </div>
+                             </div>
+                          </div>
+
+                          {/* KPI 3 */}
+                          <div className="bg-[#111] border border-white/5 p-5 rounded-xl flex flex-col justify-between h-32 relative overflow-hidden">
+                             <div className="absolute top-0 right-0 p-3 opacity-20"><CreditCard size={40} /></div>
+                             <div className="text-white/40 text-[10px] uppercase font-bold tracking-wider mb-2">MRR</div>
+                             <div>
+                                <div className="text-2xl font-bold text-white mb-1">$124.5k</div>
+                                <div className="flex items-center gap-1.5">
+                                   <span className="text-xs text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
+                                      <ArrowUpRight size={10} /> 8.4%
+                                   </span>
+                                   <span className="text-[10px] text-white/30">growth</span>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+
+                       {/* Main Chart Area */}
+                       <motion.div 
+                         className={`h-64 bg-[#111] border border-white/5 rounded-xl p-6 mb-8 relative transition-all duration-500 ${activeId && activeId !== 2 ? 'opacity-30 blur-[1px]' : 'opacity-100'}`}
+                       >
+                          <div className="flex justify-between items-center mb-6">
+                             <div>
+                                <h4 className="text-sm font-bold text-white">Revenue Overview</h4>
+                                <div className="text-[10px] text-white/40">Jan 01 - Dec 31, 2024</div>
+                             </div>
+                             <div className="flex gap-2">
+                                <div className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] text-white/60">
+                                   <div className="w-2 h-2 rounded-full bg-blue-500" /> Current
+                                </div>
+                                <div className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] text-white/60">
+                                   <div className="w-2 h-2 rounded-full bg-white/20" /> Previous
+                                </div>
+                             </div>
+                          </div>
+                          
+                          <div className="absolute inset-x-6 bottom-6 top-20 flex items-end gap-2 md:gap-4">
+                             {[30, 50, 45, 70, 60, 85, 80, 55, 65, 90, 75, 50, 60, 40, 70].map((h, i) => (
+                                <div key={i} className="flex-1 flex flex-col justify-end gap-1 h-full group/bar relative">
+                                   <div className="w-full bg-blue-600 rounded-t-sm transition-all duration-1000 relative hover:bg-blue-500" style={{ height: `${h}%` }}>
+                                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[9px] font-bold px-1.5 py-0.5 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity">
+                                         ${h}k
+                                      </div>
+                                   </div>
+                                </div>
+                             ))}
+                          </div>
+                          
+                          {/* Y-Axis Lines (Decorative) */}
+                          <div className="absolute inset-x-6 top-20 bottom-6 pointer-events-none flex flex-col justify-between">
+                             <div className="w-full h-px bg-white/5" />
+                             <div className="w-full h-px bg-white/5" />
+                             <div className="w-full h-px bg-white/5" />
+                             <div className="w-full h-px bg-white/5" />
+                          </div>
+                       </motion.div>
+
+                       {/* Data Table */}
+                       <motion.div 
+                         className={`bg-[#111] border border-white/5 rounded-xl overflow-hidden flex-1 transition-all duration-500 ${activeId && activeId !== 3 ? 'opacity-30 blur-[1px]' : 'opacity-100'}`}
+                       >
+                          <div className="h-10 border-b border-white/5 flex items-center px-6 gap-4 bg-white/[0.02] text-[10px] text-white/40 uppercase font-bold tracking-wider">
+                             <div className="w-1/3">Company</div>
+                             <div className="w-1/6">Status</div>
+                             <div className="w-1/4">Amount</div>
+                             <div className="w-1/4 text-right">Date</div>
+                          </div>
+                          {[
+                             { name: "Acme Corp", status: "Active", amount: "$12,500", date: "Oct 24" },
+                             { name: "Stark Ind", status: "Pending", amount: "$4,200", date: "Oct 22" },
+                             { name: "Wayne Ent", status: "Active", amount: "$8,900", date: "Oct 21" },
+                             { name: "Cyberdyne", status: "Cancelled", amount: "$1,100", date: "Oct 19" },
+                          ].map((row, i) => (
+                             <div key={i} className="h-12 border-b border-white/5 flex items-center px-6 gap-4 last:border-0 hover:bg-white/[0.02] transition-colors group/row">
+                                <div className="w-1/3 flex items-center gap-3">
+                                   <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center text-[10px] font-bold text-white/60">{row.name.charAt(0)}</div>
+                                   <span className="text-xs text-white/80 font-medium">{row.name}</span>
+                                </div>
+                                <div className="w-1/6">
+                                   <span className={`text-[10px] px-1.5 py-0.5 rounded border ${
+                                      row.status === 'Active' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
+                                      row.status === 'Pending' ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20' :
+                                      'bg-red-500/10 text-red-500 border-red-500/20'
+                                   }`}>
+                                      {row.status}
+                                   </span>
+                                </div>
+                                <div className="w-1/4 text-xs text-white/60 font-mono">{row.amount}</div>
+                                <div className="w-1/4 text-right text-xs text-white/40">{row.date}</div>
+                             </div>
+                          ))}
+                       </motion.div>
+
+                    </div>
+                 </div>
+             </div>
+
+             {/* --- HOTSPOTS OVERLAY (Outside overflow-hidden) --- */}
+             <div className="absolute inset-0 pointer-events-none md:pointer-events-auto">
+                {HOTSPOTS.map((spot) => {
+                  const isActive = activeId === spot.id;
+                  
+                  return (
+                    <div 
+                      key={spot.id}
+                      className="absolute z-30"
+                      style={{ top: spot.position.top, left: spot.position.left }}
+                    >
+                       <button
+                         onClick={() => setActiveId(isActive ? null : spot.id)}
+                         onMouseEnter={() => setActiveId(spot.id)}
+                         className="relative group focus:outline-none"
+                         aria-label={`View ${spot.title} details`}
+                       >
+                          {/* Pulse Effect */}
+                          <span className={`absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75 animate-ping ${isActive ? 'paused' : 'running'}`} />
+                          
+                          {/* Dot */}
+                          <div className={`relative w-4 h-4 md:w-6 md:h-6 rounded-full border-2 transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.5)] ${isActive ? 'bg-white border-blue-500 scale-125' : 'bg-blue-500 border-white hover:scale-110'}`} />
+                          
+                          {/* Connecting Line (Optional, for style) */}
+                          <AnimatePresence>
+                            {isActive && (
+                               <motion.div 
+                                 initial={{ opacity: 0, height: 0 }}
+                                 animate={{ opacity: 1, height: 40 }}
+                                 exit={{ opacity: 0, height: 0 }}
+                                 className="absolute top-full left-1/2 w-px bg-blue-500/50 -translate-x-1/2 origin-top"
+                               />
+                            )}
+                          </AnimatePresence>
+                       </button>
+
+                       {/* Detail Card (Popover) */}
+                       <AnimatePresence>
+                          {isActive && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 20, scale: 1 }}
+                              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                              transition={{ duration: 0.2 }}
+                              className={`absolute w-64 md:w-72 bg-[#111]/90 backdrop-blur-xl border border-white/10 rounded-xl p-5 shadow-2xl z-40
+                                ${spot.position.left > '50%' ? 'right-0 -mr-2 md:-mr-4' : 'left-0 -ml-2 md:-ml-4'}
+                                pointer-events-auto
+                              `}
+                            >
+                               <div className="flex items-start gap-3 mb-3">
+                                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+                                     {React.createElement(spot.icon, { size: 16 })}
+                                  </div>
+                                  <div>
+                                     <h4 className="text-white font-bold text-sm leading-tight">{spot.title}</h4>
+                                     <span className="text-[10px] text-blue-400 uppercase font-bold tracking-wider">{spot.label}</span>
+                                  </div>
+                               </div>
+                               <p className="text-white-dim text-xs leading-relaxed border-t border-white/10 pt-3">
+                                  {spot.description}
+                               </p>
+                            </motion.div>
+                          )}
+                       </AnimatePresence>
+                    </div>
+                  )
+                })}
+             </div>
+
+             {/* Overlay Gradient for Mobile Readability */}
+             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent md:hidden pointer-events-none" />
+
+          </motion.div>
+
+          {/* Mobile List View (Alternative to hotspots on small screens) */}
+          <div className="md:hidden mt-8 grid grid-cols-1 gap-4">
+             {HOTSPOTS.map((spot) => (
+                <div key={spot.id} className="bg-[#111] border border-white/10 rounded-xl p-5 flex gap-4">
+                   <div className="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0 border border-blue-500/20">
+                      {React.createElement(spot.icon, { size: 20 })}
+                   </div>
+                   <div>
+                      <h4 className="text-white font-bold mb-1">{spot.title}</h4>
+                      <p className="text-white-dim text-sm leading-relaxed">{spot.description}</p>
+                   </div>
+                </div>
+             ))}
+          </div>
+
+        </div>
+
+        {/* Closing */}
+        <div className="mt-16 text-center">
+           <p className="text-lg text-white mb-6 font-medium">Ready to simplify your complexity?</p>
+           <a 
+             href="https://cal.com/flowrax/project-discussion" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             className="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-white transition-colors group"
+           >
+              Book a Platform Strategy Call <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+           </a>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
 const SaasPlatformPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050505] selection:bg-blue-500 selection:text-white">
       <SaasHero />
+      <SaasExpertise />
       <WhyChooseUs />
       <WebDesignTechStack />
     </div>

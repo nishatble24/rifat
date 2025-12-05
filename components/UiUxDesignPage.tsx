@@ -1,7 +1,8 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon } from 'lucide-react';
+import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component } from 'lucide-react';
 import WhyChooseUs from './WhyChooseUs';
 import AnimatedSection from './ui/AnimatedSection';
 
@@ -132,12 +133,6 @@ const UiUxExpertise: React.FC = () => {
                                    `}
                                    style={{ 
                                       transform: `rotate(${180 + angle}deg)`, // Point back to center. 
-                                      // Note: Since this is inside a counter-rotated div, we need to compensate.
-                                      // Actually, the easier way is to render lines in a separate SVG layer that doesn't rotate, but let's try CSS logic.
-                                      // If parent rotates 360, this div rotates -360. 
-                                      // The `transform` above puts it in place.
-                                      // To point to center: calculate angle relative to current rotation? Complex.
-                                      // Simplified: Just use a glow effect for now or absolute SVG lines.
                                    }}
                                 />
                                 
@@ -182,6 +177,210 @@ const UiUxExpertise: React.FC = () => {
                  </div>
               </AnimatedSection>
            ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+// --- PROCESS SECTION ---
+
+const RESEARCH_STEPS = [
+  { id: '01', title: 'Discover', desc: 'Stakeholder interviews, user research, and competitive analysis.', icon: Search },
+  { id: '02', title: 'Define', desc: 'User personas, journey maps, and problem statements.', icon: User },
+  { id: '03', title: 'Validate', desc: 'Usability testing and user feedback loops to verify decisions.', icon: CheckCircle2 }
+];
+
+const DESIGN_STEPS = [
+  { id: '01', title: 'Structure', desc: 'Information architecture and wireframes that organize content.', icon: BrainCircuit },
+  { id: '02', title: 'Craft', desc: 'Visual design, component creation, and interaction details.', icon: Palette },
+  { id: '03', title: 'Refine', desc: 'Iteration, polish, and pixel-perfect preparation for build.', icon: Sparkles }
+];
+
+const UiUxProcess: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
+  const pathLength = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
+
+  return (
+    <section ref={containerRef} className="py-24 md:py-32 bg-[#050505] relative border-t border-white/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Header */}
+        <AnimatedSection className="text-center mb-16 md:mb-24">
+          <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">How We Work</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Two Disciplines. One Process.</h2>
+          <p className="text-white-dim text-lg">Research informs design. Design validates research.</p>
+        </AnimatedSection>
+
+        {/* --- DESKTOP DUAL TRACK --- */}
+        <div className="hidden lg:block relative h-[1200px] w-full">
+           
+           {/* SVG PATHS */}
+           <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none">
+              <defs>
+                 <linearGradient id="researchGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#A855F7" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#A855F7" stopOpacity="1" />
+                 </linearGradient>
+                 <linearGradient id="designGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#10B981" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#10B981" stopOpacity="1" />
+                 </linearGradient>
+              </defs>
+              
+              {/* Left Track (Research) - Purple */}
+              <motion.path 
+                 d="M 250 0 C 250 300, 350 400, 450 600 C 550 800, 640 900, 640 1100"
+                 fill="none"
+                 stroke="url(#researchGradient)"
+                 strokeWidth="3"
+                 strokeDasharray="10 10"
+                 style={{ pathLength }}
+              />
+
+              {/* Right Track (Design) - Green */}
+              <motion.path 
+                 d="M 1030 0 C 1030 300, 930 400, 830 600 C 730 800, 640 900, 640 1100"
+                 fill="none"
+                 stroke="url(#designGradient)"
+                 strokeWidth="3"
+                 style={{ pathLength }}
+              />
+
+              {/* Cross Connections */}
+              <motion.line x1="250" y1="200" x2="1030" y2="200" stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
+              <motion.line x1="380" y1="500" x2="900" y2="500" stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
+              <motion.line x1="450" y1="800" x2="830" y2="800" stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
+           </svg>
+
+           {/* --- RESEARCH NODES (LEFT) --- */}
+           {RESEARCH_STEPS.map((step, i) => (
+              <motion.div 
+                 key={`res-${i}`}
+                 className="absolute"
+                 style={{ 
+                    top: `${15 + i * 30}%`, 
+                    left: i === 0 ? '250px' : i === 1 ? '350px' : '450px',
+                    x: '-50%' 
+                 }}
+                 initial={{ opacity: 0, x: -50 }}
+                 whileInView={{ opacity: 1, x: '-50%' }}
+                 viewport={{ margin: "-100px" }}
+                 transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                 <div className="flex items-center gap-6 flex-row-reverse text-right w-[400px]">
+                    <div className="relative">
+                       <div className="w-12 h-12 rounded-full bg-black border-2 border-purple-500 flex items-center justify-center text-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.4)] z-10 relative">
+                          {React.createElement(step.icon, { size: 20 })}
+                       </div>
+                       <div className="absolute top-1/2 right-full mr-4 text-xs font-mono text-purple-500 font-bold tracking-widest bg-black px-2 py-1 rounded border border-purple-500/30">
+                          RESEARCH
+                       </div>
+                    </div>
+                    <div className="flex-1">
+                       <div className="text-4xl font-bold text-white/10 absolute -top-4 right-16 -z-10">{step.id}</div>
+                       <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                       <p className="text-sm text-white-dim leading-relaxed">{step.desc}</p>
+                    </div>
+                 </div>
+              </motion.div>
+           ))}
+
+           {/* --- DESIGN NODES (RIGHT) --- */}
+           {DESIGN_STEPS.map((step, i) => (
+              <motion.div 
+                 key={`des-${i}`}
+                 className="absolute"
+                 style={{ 
+                    top: `${15 + i * 30}%`, 
+                    left: i === 0 ? '1030px' : i === 1 ? '930px' : '830px',
+                    x: '-50%' 
+                 }}
+                 initial={{ opacity: 0, x: 50 }}
+                 whileInView={{ opacity: 1, x: '-50%' }}
+                 viewport={{ margin: "-100px" }}
+                 transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                 <div className="flex items-center gap-6 w-[400px]">
+                    <div className="relative">
+                       <div className="w-12 h-12 rounded-full bg-black border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_20px_rgba(16,185,129,0.4)] z-10 relative">
+                          {React.createElement(step.icon, { size: 20 })}
+                       </div>
+                       <div className="absolute top-1/2 left-full ml-4 text-xs font-mono text-primary font-bold tracking-widest bg-black px-2 py-1 rounded border border-primary/30">
+                          DESIGN
+                       </div>
+                    </div>
+                    <div className="flex-1">
+                       <div className="text-4xl font-bold text-white/10 absolute -top-4 left-16 -z-10">{step.id}</div>
+                       <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                       <p className="text-sm text-white-dim leading-relaxed">{step.desc}</p>
+                    </div>
+                 </div>
+              </motion.div>
+           ))}
+
+           {/* --- CONVERGENCE POINT --- */}
+           <motion.div 
+              className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[500px] flex flex-col items-center text-center"
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ margin: "-50px" }}
+           >
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-primary flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.3)] mb-6 relative z-10">
+                 <Rocket size={40} className="text-white" />
+                 {/* Ripple */}
+                 <div className="absolute inset-0 rounded-full border border-white/50 animate-ping opacity-20" />
+              </div>
+              <h3 className="text-3xl font-bold text-white mb-2">Deliver</h3>
+              <p className="text-white-dim text-lg">Complete design system, interactive prototypes, and documentation ready for development.</p>
+           </motion.div>
+
+        </div>
+
+        {/* --- MOBILE VERTICAL TIMELINE --- */}
+        <div className="lg:hidden relative border-l-2 border-white/10 ml-4 space-y-12 pb-12">
+            {[
+               { ...RESEARCH_STEPS[0], type: 'research' },
+               { ...DESIGN_STEPS[0], type: 'design' },
+               { ...RESEARCH_STEPS[1], type: 'research' },
+               { ...DESIGN_STEPS[1], type: 'design' },
+               { ...RESEARCH_STEPS[2], type: 'research' },
+               { ...DESIGN_STEPS[2], type: 'design' },
+            ].map((step, i) => (
+               <AnimatedSection key={i} className="relative pl-8">
+                  {/* Node */}
+                  <div className={`absolute -left-[21px] top-0 w-10 h-10 rounded-full bg-black border-2 flex items-center justify-center shadow-lg
+                     ${step.type === 'research' ? 'border-purple-500 text-purple-500' : 'border-primary text-primary'}
+                  `}>
+                     {React.createElement(step.icon, { size: 18 })}
+                  </div>
+                  
+                  {/* Label */}
+                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border mb-2 inline-block
+                     ${step.type === 'research' ? 'text-purple-500 border-purple-500/30 bg-purple-500/10' : 'text-primary border-primary/30 bg-primary/10'}
+                  `}>
+                     {step.type}
+                  </span>
+
+                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                  <p className="text-sm text-white-dim leading-relaxed">{step.desc}</p>
+               </AnimatedSection>
+            ))}
+
+            {/* Mobile Convergence */}
+            <AnimatedSection className="relative pl-8 pt-8">
+               <div className="absolute -left-[25px] top-8 w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-primary flex items-center justify-center text-white shadow-lg">
+                  <Rocket size={20} />
+               </div>
+               <h3 className="text-2xl font-bold text-white mb-2">Deliver</h3>
+               <p className="text-sm text-white-dim leading-relaxed">Complete design system, interactive prototypes, and documentation ready for development.</p>
+            </AnimatedSection>
         </div>
 
       </div>
@@ -364,6 +563,9 @@ const UiUxDesignPage: React.FC = () => {
       
       {/* Our Expertise Radial Section */}
       <UiUxExpertise />
+
+      {/* Our Process Section (Dual Track) */}
+      <UiUxProcess />
 
       {/* Why Flowrax Section */}
       <WhyChooseUs />
