@@ -76,6 +76,27 @@ export const PROJECTS: Project[] = [
     image: 'https://ik.imagekit.io/flowrax/custom-image%20(2).webp',
     tags: ['AI', 'Healthcare', 'Clean'],
   },
+  {
+    id: '5',
+    title: 'Quantum Web Platform',
+    category: 'Web Design',
+    image: 'https://ik.imagekit.io/flowrax/service%20section%20row/webdesign%20dd.webp?updatedAt=1764837603212',
+    tags: ['Web', 'Animation', '3D'],
+  },
+  {
+    id: '6',
+    title: 'Lifestyle App Design',
+    category: 'Mobile Apps',
+    image: 'https://ik.imagekit.io/flowrax/service%20section%20row/appdesign%20dd.webp?updatedAt=1764837602507',
+    tags: ['Mobile', 'iOS', 'Interaction'],
+  },
+  {
+    id: '7',
+    title: 'Enterprise Design System',
+    category: 'UI/UX',
+    image: 'https://ik.imagekit.io/flowrax/service%20section%20row/uiuxdesign%20dd.webp?updatedAt=1764837602345',
+    tags: ['Design System', 'Product', 'Scalable'],
+  },
 ];
 
 export const SOCIALS: SocialLink[] = [
