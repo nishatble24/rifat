@@ -2,8 +2,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Layout, Code, Zap, MousePointer2, Image as ImageIcon, CheckCircle2, Globe, Search, Smartphone, ShoppingBag, BarChart, LayoutTemplate, MonitorPlay, Layers as LayersIcon, UserCircle, Rocket, FileSearch, PenTool, Terminal, Target, MessageCircle, TrendingUp, Gauge, Box, Figma, Wind, Database, Triangle, Hexagon, Command, Palette, BarChart2, ChevronLeft, ChevronRight, Star, Quote, Clock, Sparkles, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Layout, Code, Zap, MousePointer2, Image as ImageIcon, CheckCircle2, Globe, Search, Smartphone, ShoppingBag, BarChart, LayoutTemplate, MonitorPlay, Layers as LayersIcon, UserCircle, Rocket, FileSearch, PenTool, Terminal, Target, MessageCircle, TrendingUp, Gauge, Box, Figma, Wind, Database, Triangle, Hexagon, Command, Palette, BarChart2, ChevronLeft, ChevronRight, Star, Quote, Clock, Sparkles, ArrowLeft, Map as MapIcon, Laptop, Tablet, Moon } from 'lucide-react';
 import AnimatedSection from './ui/AnimatedSection';
+import WebDesignTechStack from './WebDesignTechStack';
 
 // --- MAGNETIC INTERACTION COMPONENT ---
 const MagneticText = ({ children, tooltip }: { children?: React.ReactNode; tooltip: string }) => {
@@ -493,111 +494,138 @@ const WebDesignProcess: React.FC = () => {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+    <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -translate-y-1/2" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
+        {/* Header */}
         <AnimatedSection className="text-center mb-16 md:mb-24">
-           <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">How We Work</span>
-           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Process</h2>
-           <p className="text-white-dim text-lg">Six steps to transform your vision into reality.</p>
+          <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">How We Work</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Process</h2>
+          <p className="text-white-dim text-lg">Six steps to transform your vision into reality.</p>
         </AnimatedSection>
 
-        <div className="flex flex-col md:flex-row items-center min-h-[500px] gap-12 md:gap-0">
+        {/* Main Content Split */}
+        <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-12 lg:gap-0 min-h-[600px]">
           
           {/* LEFT: Giant Number & Nav */}
-          <div className="w-full md:w-[45%] flex flex-col items-center justify-center relative">
-             <div className="relative h-[250px] md:h-[400px] flex items-center justify-center w-full">
+          <div className="w-full lg:w-[45%] flex flex-col items-center justify-center relative">
+             <div className="relative h-[300px] w-full flex items-center justify-center perspective-[1000px]">
                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={currentStep}
-                    initial={{ opacity: 0, scale: 0.8, rotate: -5, y: 50 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.1, rotate: 5, y: -50 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="text-[180px] md:text-[350px] font-black leading-none text-transparent select-none absolute"
-                    style={{ WebkitTextStroke: '2px rgba(255,255,255,0.1)' }}
-                  >
-                    {String(currentStep + 1).padStart(2, '0')}
-                  </motion.span>
+                 <motion.span
+                   key={currentStep}
+                   initial={{ opacity: 0, scale: 0.8, rotate: -5, y: 50 }}
+                   animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
+                   exit={{ opacity: 0, scale: 1.1, rotate: 5, y: -50 }}
+                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                   className="text-[200px] md:text-[350px] font-black leading-none text-transparent select-none absolute"
+                   style={{ 
+                     WebkitTextStroke: '2px rgba(255,255,255,0.2)',
+                   }}
+                 >
+                   {String(currentStep + 1).padStart(2, '0')}
+                 </motion.span>
+               </AnimatePresence>
+               
+               {/* Active State Fill Overlay (Optional dynamic fill effect) */}
+               <AnimatePresence mode="wait">
+                 <motion.span
+                   key={`fill-${currentStep}`}
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 0.1 }}
+                   exit={{ opacity: 0 }}
+                   transition={{ duration: 0.5 }}
+                   className="text-[200px] md:text-[350px] font-black leading-none text-white select-none absolute blur-xl"
+                 >
+                   {String(currentStep + 1).padStart(2, '0')}
+                 </motion.span>
                </AnimatePresence>
              </div>
 
-             {/* Progress Dots */}
-             <div className="flex gap-3 mt-8 z-10">
-                {PROCESS_STEPS.map((_, index) => (
-                   <button
-                     key={index}
-                     onClick={() => setCurrentStep(index)}
-                     className={`h-2 rounded-full transition-all duration-300 ${
-                        index === currentStep ? 'w-8 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
-                     }`}
-                     aria-label={`Go to step ${index + 1}`}
-                   />
-                ))}
-             </div>
+             {/* Navigation Controls */}
+             <div className="flex flex-col items-center gap-8 mt-8 z-10">
+                {/* Dots */}
+                <div className="flex gap-3">
+                  {PROCESS_STEPS.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentStep(index)}
+                      className={`h-2 rounded-full transition-all duration-500 ${
+                        index === currentStep 
+                          ? 'w-8 bg-primary shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
+                          : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                      aria-label={`Go to step ${index + 1}`}
+                    />
+                  ))}
+                </div>
 
-             {/* Arrows */}
-             <div className="flex gap-4 mt-6 z-10">
-                <button 
-                  onClick={prevStep}
-                  disabled={currentStep === 0}
-                  className="p-3 rounded-full border border-white/10 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                >
-                   <ChevronLeft size={24} />
-                </button>
-                <button 
-                  onClick={nextStep}
-                  disabled={currentStep === PROCESS_STEPS.length - 1}
-                  className="p-3 rounded-full border border-white/10 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                >
-                   <ChevronRight size={24} />
-                </button>
+                {/* Arrows */}
+                <div className="flex gap-6">
+                   <button 
+                     onClick={prevStep} 
+                     disabled={currentStep === 0}
+                     className="p-4 rounded-full border border-white/10 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all active:scale-95 group"
+                   >
+                      <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+                   </button>
+                   <button 
+                     onClick={nextStep} 
+                     disabled={currentStep === PROCESS_STEPS.length - 1}
+                     className="p-4 rounded-full bg-primary text-black hover:bg-primary-glow disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95 group shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)]"
+                   >
+                      <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
+                   </button>
+                </div>
              </div>
           </div>
 
           {/* RIGHT: Content Card */}
-          <div className="w-full md:w-[55%] md:pl-12">
-             <AnimatePresence mode="wait">
-                <motion.div
-                   key={currentStep}
-                   initial={{ opacity: 0, y: 40 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   exit={{ opacity: 0, y: -40 }}
-                   transition={{ duration: 0.5, ease: "easeOut" }}
-                   className="flex flex-col gap-6"
-                >
-                   <div>
-                      <motion.h3 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-3xl md:text-4xl font-bold text-white mb-4"
-                      >
-                         {PROCESS_STEPS[currentStep].title}
-                      </motion.h3>
-                      <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-white-dim text-lg leading-relaxed max-w-lg"
-                      >
-                         {PROCESS_STEPS[currentStep].description}
-                      </motion.p>
-                   </div>
-                   
+          <div className="w-full lg:w-[55%] relative flex items-center">
+             <div className="relative w-full overflow-hidden p-1"> {/* Padding for shadow clipping */}
+                <AnimatePresence mode="wait">
                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="mt-4 rounded-3xl border border-white/10 overflow-hidden shadow-2xl"
+                     key={currentStep}
+                     initial={{ opacity: 0, x: 50 }}
+                     animate={{ opacity: 1, x: 0 }}
+                     exit={{ opacity: 0, x: -50 }}
+                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                     className="w-full bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative"
                    >
-                      {PROCESS_STEPS[currentStep].visual}
+                      {/* Decorative Gradient */}
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] rounded-full pointer-events-none" />
+                      
+                      <motion.h3 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.5 }}
+                        className="text-3xl md:text-5xl font-bold text-white mb-6"
+                      >
+                        {PROCESS_STEPS[currentStep].title}
+                      </motion.h3>
+                      
+                      <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="text-white-dim text-lg leading-relaxed mb-10 max-w-xl"
+                      >
+                        {PROCESS_STEPS[currentStep].description}
+                      </motion.p>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                        className="w-full"
+                      >
+                         {PROCESS_STEPS[currentStep].visual}
+                      </motion.div>
                    </motion.div>
-                </motion.div>
-             </AnimatePresence>
+                </AnimatePresence>
+             </div>
           </div>
 
         </div>
@@ -796,150 +824,6 @@ const WebValueProp: React.FC = () => {
              />
 
           </div>
-       </div>
-    </section>
-  );
-};
-
-// --- ORBITING TECH STACK ---
-
-// Tool Data
-const TOOLS_RINGS = [
-  // Inner Ring (Design)
-  {
-    radius: 120,
-    duration: 30,
-    items: [
-      { name: 'Figma', icon: Figma, color: '#F24E1E' },
-      { name: 'Adobe XD', icon: PenTool, color: '#FF61F6' },
-      { name: 'Photoshop', icon: Palette, color: '#31A8FF' },
-      { name: 'Illustrator', icon: LayersIcon, color: '#FF9A00' },
-    ]
-  },
-  // Middle Ring (Platforms & Frontend)
-  {
-    radius: 220,
-    duration: 45,
-    reverse: true,
-    items: [
-        { name: 'Webflow', icon: Layout, color: '#4353FF' },
-        { name: 'Framer', icon: Box, color: '#0055FF' },
-        { name: 'React', icon: Code, color: '#61DAFB' },
-        { name: 'Next.js', icon: Triangle, color: '#ffffff' },
-        { name: 'Shopify', icon: ShoppingBag, color: '#96BF48' },
-        { name: 'WordPress', icon: Globe, color: '#21759B' },
-    ]
-  },
-  // Outer Ring (Dev & Analytics)
-  {
-    radius: 320,
-    duration: 60,
-    items: [
-        { name: 'Tailwind', icon: Wind, color: '#38B2AC' },
-        { name: 'GSAP', icon: Zap, color: '#88CE02' },
-        { name: 'Vercel', icon: Command, color: '#000000' },
-        { name: 'Analytics', icon: BarChart2, color: '#F4B400' },
-        { name: 'HTML5', icon: Code, color: '#E34F26' },
-        { name: 'Node.js', icon: Terminal, color: '#339933' },
-        { name: 'Supabase', icon: Database, color: '#3ECF8E' },
-        { name: 'Three.js', icon: Hexagon, color: '#ffffff' },
-    ]
-  }
-];
-
-const WebDesignTechStack: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
-       <div className="absolute inset-0 bg-grid-white opacity-[0.03] pointer-events-none" />
-       
-       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
-          
-          <AnimatedSection className="text-center mb-16 md:mb-24 relative z-20">
-             <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">Our Toolkit</span>
-             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Powered by Industry Standards</h2>
-             <p className="text-white-dim text-lg">Always learning, always evolving.</p>
-          </AnimatedSection>
-
-          {/* Orbit System Container */}
-          <div 
-             className="relative w-[800px] h-[800px] max-w-full flex items-center justify-center scale-[0.6] md:scale-75 lg:scale-100 transition-transform duration-500"
-             onMouseEnter={() => setIsHovered(true)}
-             onMouseLeave={() => setIsHovered(false)}
-          >
-             
-             {/* Center Glow */}
-             <div className="absolute inset-0 bg-radial-gradient from-primary/10 to-transparent blur-3xl opacity-30 pointer-events-none" />
-
-             {/* Center Logo */}
-             <motion.div 
-               className="relative z-20 w-24 h-24 bg-black rounded-full border border-white/10 flex items-center justify-center shadow-[0_0_50px_-10px_rgba(16,185,129,0.3)]"
-               whileHover={{ scale: 1.1 }}
-             >
-                <img src="https://ik.imagekit.io/flowrax/logo-a2.png" alt="Flowrax" className="w-12 h-12 object-contain" />
-             </motion.div>
-
-             {/* Rings */}
-             {TOOLS_RINGS.map((ring, ringIndex) => (
-                <div 
-                  key={ringIndex}
-                  className="absolute rounded-full border border-white/5"
-                  style={{ width: ring.radius * 2, height: ring.radius * 2 }}
-                >
-                   {/* Rotating Container */}
-                   <motion.div
-                      className="w-full h-full relative"
-                      animate={{ rotate: ring.reverse ? -360 : 360 }}
-                      transition={{ 
-                         duration: isHovered ? ring.duration * 2 : ring.duration, 
-                         repeat: Infinity, 
-                         ease: "linear" 
-                      }}
-                   >
-                      {ring.items.map((tool, itemIndex) => {
-                         const angle = (itemIndex / ring.items.length) * 360;
-                         const radian = (angle * Math.PI) / 180;
-                         
-                         // Calculate position on circumference logic isn't needed if we use rotation transform on parent
-                         // We place items at top:0, left: 50%, then rotate the container.
-                         // BUT to space them out, we need to rotate each item's container to its starting angle.
-                         
-                         return (
-                            <div
-                               key={tool.name}
-                               className="absolute top-0 left-1/2 -ml-6 -mt-6 w-12 h-12"
-                               style={{ 
-                                  transform: `rotate(${angle}deg) translateY(-${ring.radius}px)` 
-                               }}
-                            >
-                               {/* Counter-Rotation to keep icon upright */}
-                               <motion.div
-                                  className="w-12 h-12 bg-neutral-900 border border-white/10 rounded-full flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-neutral-800 transition-all cursor-pointer group relative shadow-lg"
-                                  animate={{ rotate: ring.reverse ? 360 : -360 }}
-                                  transition={{ 
-                                     duration: isHovered ? ring.duration * 2 : ring.duration, 
-                                     repeat: Infinity, 
-                                     ease: "linear" 
-                                  }}
-                                  whileHover={{ scale: 1.2 }}
-                               >
-                                  <tool.icon size={20} className="group-hover:text-primary transition-colors" />
-                                  
-                                  {/* Tooltip */}
-                                  <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
-                                     {tool.name}
-                                  </div>
-                               </motion.div>
-                            </div>
-                         );
-                      })}
-                   </motion.div>
-                </div>
-             ))}
-
-          </div>
-
        </div>
     </section>
   );
@@ -1234,22 +1118,10 @@ const WebDesignCTA: React.FC = () => {
   )
 }
 
-const WebDesignPage: React.FC = () => {
+const WebDesignHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  // --- 3D Tilt Logic ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
-  const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
-
-  const rotateX = useTransform(springY, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-15, 15]);
-  
-  // Elements move at different speeds for parallax depth
-  const textX = useTransform(springX, [-0.5, 0.5], ["-2%", "2%"]);
-  const browserZ = useTransform(springY, [-0.5, 0.5], [0, 50]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -1265,231 +1137,202 @@ const WebDesignPage: React.FC = () => {
     mouseY.set(0);
   };
 
+  // Browser tilt logic
+  const springX = useSpring(mouseX, { stiffness: 40, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 40, damping: 20 });
+  const rotateX = useTransform(springY, [-0.5, 0.5], [3, -3]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-3, 3]);
+
+  return (
+    <section 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-[70vh] flex items-center bg-[#050505] overflow-hidden pt-24 pb-12 md:py-0"
+    >
+      <div className="absolute inset-0 bg-grid-white opacity-[0.03] pointer-events-none" />
+      <div className="absolute right-0 top-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
+          
+          {/* LEFT: Content */}
+          <div className="w-full md:w-[55%] text-left relative z-20">
+            <AnimatedSection>
+              <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-primary/20 bg-primary/10 px-3 py-1 rounded-full">
+                <Layout size={14} /> Web Design
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+                Websites that work <br />
+                <span className="text-white-dim">as hard as you do.</span>
+              </h1>
+              
+              <p className="text-lg text-white-dim mb-8 max-w-xl leading-relaxed">
+                Fast, responsive, conversion-focused websites that look stunning on every device and drive real business results.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-8">
+                <a 
+                  href="https://cal.com/flowrax/project-discussion" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-white/90 transition-all active:scale-95 shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
+                >
+                  Start Your Website <ArrowRight size={18} />
+                </a>
+                <Link 
+                  to="/work" 
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 text-white font-bold rounded-full border border-white/10 hover:bg-white/10 transition-colors"
+                >
+                  View Recent Work
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-4 text-white/40 text-xs font-medium">
+                 <div className="flex items-center gap-1"><CheckCircle2 size={12} className="text-primary" /> 100+ websites launched</div>
+                 <div className="flex items-center gap-1"><CheckCircle2 size={12} className="text-primary" /> Avg. 40% conversion increase</div>
+              </div>
+            </AnimatedSection>
+          </div>
+
+          {/* RIGHT: Visual (Browser Mockup) */}
+          <div className="w-full md:w-[50%] relative h-[450px] md:h-[550px] flex items-center justify-center perspective-[1200px] md:-ml-12">
+            <motion.div
+              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+              className="relative w-full max-w-lg"
+            >
+               {/* Floating Badge (Performance) */}
+               <motion.div 
+                 initial={{ opacity: 0, x: 20 }}
+                 animate={{ opacity: 1, x: 0 }}
+                 transition={{ delay: 0.8 }}
+                 className="absolute -right-4 top-20 z-30 bg-black border border-green-500/30 rounded-lg p-3 shadow-2xl flex flex-col items-center"
+               >
+                  <div className="text-[10px] text-white/60 uppercase font-bold tracking-widest mb-1">Performance</div>
+                  <div className="text-3xl font-mono font-bold text-green-500">100</div>
+               </motion.div>
+
+               {/* Browser Window */}
+               <motion.div 
+                 initial={{ opacity: 0, y: 50 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.8, ease: "easeOut" }}
+                 className="w-full aspect-[4/3] bg-[#0A0A0A] rounded-xl border border-white/10 shadow-2xl overflow-hidden flex flex-col relative z-20"
+               >
+                  {/* Browser Chrome */}
+                  <div className="h-10 bg-[#111] border-b border-white/5 flex items-center gap-2 px-4 relative z-10">
+                     <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                        <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
+                        <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+                     </div>
+                     <div className="flex-1 mx-4 bg-[#000] h-6 rounded-md border border-white/5 flex items-center px-2">
+                        <div className="w-3 h-3 rounded-full bg-white/20 mr-2" />
+                        <div className="h-1.5 w-24 bg-white/10 rounded-full" />
+                     </div>
+                  </div>
+
+                  {/* Inner Content Scrolling Container */}
+                  <div className="flex-1 bg-[#050505] relative overflow-hidden">
+                     <motion.div 
+                        animate={{ y: ["0%", "-50%"] }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                        className="w-full"
+                     >
+                        {/* Mock Page Content (Doubled for loop) */}
+                        {[1, 2].map((iter) => (
+                           <div key={iter} className="w-full">
+                              {/* Hero Block */}
+                              <div className="h-64 p-8 flex flex-col justify-center items-center text-center border-b border-white/5">
+                                 <div className="h-2 w-20 bg-primary/20 rounded-full mb-4" />
+                                 <div className="h-6 w-3/4 bg-white/10 rounded mb-2" />
+                                 <div className="h-6 w-1/2 bg-white/10 rounded mb-6" />
+                                 <div className="h-10 w-32 bg-white rounded-lg" />
+                              </div>
+                              {/* Grid Block */}
+                              <div className="p-8 grid grid-cols-2 gap-4 border-b border-white/5">
+                                 <div className="aspect-square bg-white/5 rounded-lg" />
+                                 <div className="aspect-square bg-white/5 rounded-lg" />
+                              </div>
+                              {/* Feature Block */}
+                              <div className="p-8 flex items-center gap-4 border-b border-white/5">
+                                 <div className="w-16 h-16 bg-white/5 rounded-lg shrink-0" />
+                                 <div className="space-y-2 w-full">
+                                    <div className="h-3 w-2/3 bg-white/10 rounded" />
+                                    <div className="h-2 w-full bg-white/5 rounded" />
+                                    <div className="h-2 w-full bg-white/5 rounded" />
+                                 </div>
+                              </div>
+                           </div>
+                        ))}
+                     </motion.div>
+
+                     {/* Cursor Interaction */}
+                     <motion.div 
+                        className="absolute z-30 pointer-events-none top-0 left-0"
+                        animate={{ 
+                           x: [50, 200, 200, 100, 50],
+                           y: [200, 230, 230, 350, 200],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                     >
+                        <MousePointer2 className="text-white fill-black drop-shadow-lg" size={24} />
+                        {/* Click Effect */}
+                        <motion.div 
+                           className="absolute top-0 left-0 w-8 h-8 bg-white/30 rounded-full"
+                           initial={{ scale: 0, opacity: 0 }}
+                           animate={{ scale: [0, 1.5], opacity: [0.8, 0] }}
+                           transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3.5 }}
+                        />
+                     </motion.div>
+                  </div>
+               </motion.div>
+
+               {/* Background Layer (Tablet/Mobile Hint) */}
+               <motion.div 
+                 style={{ x: -20, y: 20, z: -10 }}
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 transition={{ delay: 0.5, duration: 0.8 }}
+                 className="absolute top-10 -left-10 w-full h-full bg-[#111] rounded-xl border border-white/5 -z-10 opacity-50 blur-[1px]"
+               />
+
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const WebDesignPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050505] overflow-x-hidden selection:bg-primary selection:text-black">
       
-      {/* ---------------- IMMERSIVE HERO ---------------- */}
-      <section 
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden perspective-[2000px]"
-      >
-        {/* Background Ambience */}
-        <div className="absolute inset-0 bg-grid-white opacity-[0.03] pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100vh] bg-gradient-radial from-blue-900/10 via-transparent to-transparent opacity-50 pointer-events-none" />
+      {/* ---------------- REFINED COMPACT HERO (NEW) ---------------- */}
+      <WebDesignHero />
 
-        {/* --- MAIN CONTENT LAYER --- */}
-        <div className="relative z-10 w-full max-w-[90rem] mx-auto px-4 md:px-6 flex flex-col items-center justify-center h-full">
-            
-            {/* Split Typography (Behind Browser) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-between items-center px-4 md:px-20 lg:px-32 pointer-events-none select-none z-0">
-               <motion.h1 
-                 style={{ x: textX }}
-                 className="hidden md:block text-[10vw] md:text-[12vw] font-black text-white/5 leading-none tracking-tighter mix-blend-overlay"
-               >
-                 WEB
-               </motion.h1>
-               <motion.h1 
-                 style={{ x: useTransform(textX, (v) => `calc(${v} * -1)`) }}
-                 className="hidden md:block text-[10vw] md:text-[12vw] font-black text-white/5 leading-none tracking-tighter mix-blend-overlay"
-               >
-                 DESIGN
-               </motion.h1>
-            </div>
-
-            {/* Mobile Title (Visible only on small screens) */}
-            <div className="md:hidden text-center mb-12">
-               <h1 className="text-6xl font-black text-white tracking-tighter leading-none mb-2">
-                 WEB <span className="text-primary">DESIGN</span>
-               </h1>
-               <p className="text-white-dim text-sm">Websites that work as good as they look.</p>
-            </div>
-
-
-            {/* --- 3D BROWSER MOCKUP --- */}
-            <motion.div
-               style={{ 
-                 rotateX, 
-                 rotateY,
-                 z: browserZ,
-                 transformStyle: "preserve-3d"
-               }}
-               initial={{ opacity: 0, scale: 0.8, rotateX: 20 }}
-               animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-               transition={{ duration: 1, type: "spring" }}
-               className="relative w-full max-w-4xl aspect-[16/10] bg-[#0A0A0A] rounded-xl md:rounded-2xl border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] overflow-hidden z-10 group"
-            >
-               {/* Reflection/Sheen */}
-               <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-20 pointer-events-none z-50" />
-
-               {/* Browser Toolbar */}
-               <div className="h-8 md:h-12 bg-[#111] border-b border-white/5 flex items-center px-4 gap-4">
-                  <div className="flex gap-2">
-                     <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                     <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                     <div className="w-3 h-3 rounded-full bg-green-500/20" />
-                  </div>
-                  <div className="flex-1 max-w-lg mx-auto h-6 md:h-8 bg-[#050505] rounded-md flex items-center px-3 text-[10px] md:text-xs text-white/20 font-mono border border-white/5">
-                     https://flowrax.com/design-preview
-                  </div>
-               </div>
-
-               {/* Browser Content (Animated) */}
-               <div className="relative w-full h-full bg-[#050505] overflow-hidden">
-                  
-                  {/* Wireframe Layer (Fades Out) */}
-                  <motion.div 
-                    className="absolute inset-0 p-8 md:p-12 flex flex-col gap-8 opacity-20 pointer-events-none"
-                    animate={{ opacity: [0.3, 0.1, 0.3] }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                  >
-                     <div className="w-2/3 h-12 bg-white/20 rounded-lg" />
-                     <div className="flex gap-4">
-                        <div className="w-1/2 h-64 bg-white/10 rounded-lg" />
-                        <div className="w-1/2 h-64 bg-white/10 rounded-lg" />
-                     </div>
-                  </motion.div>
-
-                  {/* Real UI Layer (Assembles) */}
-                  <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-center items-center text-center">
-                      
-                      {/* Hero Text Assembly */}
-                      <div className="overflow-hidden mb-6">
-                         <motion.h2 
-                           initial={{ y: 50, opacity: 0 }}
-                           animate={{ y: 0, opacity: 1 }}
-                           transition={{ delay: 0.5, duration: 0.8 }}
-                           className="text-3xl md:text-5xl font-bold text-white mb-2"
-                         >
-                           Elevate Your Brand
-                         </motion.h2>
-                      </div>
-                      
-                      <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8 }}
-                        className="text-white-dim max-w-lg mb-8"
-                      >
-                        Experience the next generation of web design. Fast, fluid, and built for conversion.
-                      </motion.p>
-
-                      {/* Interactive Buttons */}
-                      <motion.div 
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 1 }}
-                        className="flex gap-4"
-                      >
-                         <div className="px-6 py-3 bg-primary text-black font-bold rounded-lg shadow-lg shadow-primary/20">
-                            Get Started
-                         </div>
-                         <div className="px-6 py-3 bg-white/10 text-white font-bold rounded-lg border border-white/10">
-                            Learn More
-                         </div>
-                      </motion.div>
-
-                      {/* Cursor Simulation */}
-                      <motion.div
-                        className="absolute z-50 pointer-events-none"
-                        animate={{ 
-                           x: ["-100%", "0%", "0%", "100%"],
-                           y: ["100%", "20%", "20%", "-50%"],
-                           scale: [1, 1, 0.9, 1] // Click
-                        }}
-                        transition={{ 
-                           duration: 4, 
-                           repeat: Infinity,
-                           times: [0, 0.4, 0.5, 1],
-                           repeatDelay: 1 
-                        }}
-                        style={{ top: '60%', left: '50%' }}
-                      >
-                         <MousePointer2 className="text-white fill-black drop-shadow-lg" size={24} />
-                      </motion.div>
-
-                  </div>
-
-               </div>
-               
-               {/* Floating Orbitals (Outside Browser) */}
-               <motion.div 
-                 className="absolute -right-12 top-20 bg-[#111] p-4 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 z-50"
-                 animate={{ y: [-10, 10, -10] }}
-                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               >
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
-                     <CheckCircle2 size={16} />
-                  </div>
-                  <div>
-                     <div className="text-xs text-white-dim">Performance</div>
-                     <div className="text-sm font-bold text-white">99/100</div>
-                  </div>
-               </motion.div>
-
-               <motion.div 
-                 className="absolute -left-8 bottom-20 bg-[#111] p-4 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 z-50"
-                 animate={{ y: [10, -10, 10] }}
-                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-               >
-                  <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500">
-                     <Search size={16} />
-                  </div>
-                  <div>
-                     <div className="text-xs text-white-dim">SEO Status</div>
-                     <div className="text-sm font-bold text-white">Optimized</div>
-                  </div>
-               </motion.div>
-
-            </motion.div>
-
-
-            {/* Bottom Subtitle */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="mt-16 text-center relative z-20"
-            >
-               <p className="text-lg md:text-xl text-white-dim font-medium mb-6">
-                 Websites that work as good as they look.
-               </p>
-               <div className="flex justify-center gap-6">
-                  <div className="flex items-center gap-2 text-white/60 text-sm">
-                     <Layout size={16} className="text-primary" /> Responsive
-                  </div>
-                  <div className="flex items-center gap-2 text-white/60 text-sm">
-                     <Zap size={16} className="text-primary" /> Fast
-                  </div>
-                  <div className="flex items-center gap-2 text-white/60 text-sm">
-                     <Code size={16} className="text-primary" /> Clean Code
-                  </div>
-               </div>
-            </motion.div>
-
-        </div>
-      </section>
-
-      {/* ---------------- MANIFESTO SECTION (NEW) ---------------- */}
+      {/* ---------------- MANIFESTO SECTION ---------------- */}
       <ManifestoSection />
 
-      {/* ---------------- WEB SERVICES TABS (NEW) ---------------- */}
+      {/* ---------------- WEB SERVICES TABS ---------------- */}
       <WebServicesTabs />
 
-      {/* ---------------- CINEMATIC PROCESS (NEW) ---------------- */}
+      {/* ---------------- CINEMATIC PROCESS ---------------- */}
       <WebDesignProcess />
 
       {/* ---------------- VALUE PROPOSITION BENTO GRID ---------------- */}
       <WebValueProp />
 
-      {/* ---------------- TECH STACK (NEW) ---------------- */}
+      {/* ---------------- TECH STACK ---------------- */}
       <WebDesignTechStack />
 
-      {/* ---------------- ELEGANT TESTIMONIALS (NEW) ---------------- */}
+      {/* ---------------- ELEGANT TESTIMONIALS ---------------- */}
       <WebDesignTestimonials />
 
-      {/* ---------------- IMMERSIVE CTA (NEW) ---------------- */}
+      {/* ---------------- IMMERSIVE CTA ---------------- */}
       <WebDesignCTA />
 
     </div>

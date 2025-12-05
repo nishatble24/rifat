@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { PROJECTS } from '../constants';
 import AnimatedSection from './ui/AnimatedSection';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Work: React.FC = () => {
   return (
@@ -12,13 +14,13 @@ const Work: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected Work</h2>
             <p className="text-white-dim">Showcasing our best digital products.</p>
           </div>
-          <button className="flex items-center gap-2 text-primary hover:text-white transition-colors">
+          <Link to="/work" className="flex items-center gap-2 text-primary hover:text-white transition-colors">
             View All Projects <ArrowUpRight size={18} />
-          </button>
+          </Link>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS.map((project, index) => (
+          {PROJECTS.slice(0, 4).map((project, index) => (
             <AnimatedSection key={project.id} delay={index * 0.1}>
               <div className="group cursor-pointer">
                 {/* Image Container */}

@@ -8,9 +8,9 @@ import { NAV_ITEMS } from '../constants';
 const SERVICE_ITEMS = [
   { title: 'UI/UX Design', desc: 'Intuitive user-centric interfaces', icon: Palette, href: '/services/ui-ux-design' },
   { title: 'Web Design', desc: 'High-converting landing pages', icon: Layout, href: '/services/web-design' },
-  { title: 'Mobile Apps', desc: 'Native iOS & Android', icon: Smartphone, href: '#' },
-  { title: 'Design Systems', desc: 'Scalable component libraries', icon: Cpu, href: '#' },
-  { title: 'SaaS Platforms', desc: 'Complex dashboards', icon: Layers, href: '#' },
+  { title: 'Mobile Apps', desc: 'Native iOS & Android', icon: Smartphone, href: '/services/mobile-app-design' },
+  { title: 'Design Systems', desc: 'Scalable component libraries', icon: Cpu, href: '/services/design-systems' },
+  { title: 'SaaS Platforms', desc: 'Complex dashboards', icon: Layers, href: '/services/saas-platforms' },
 ];
 
 interface HeaderProps {

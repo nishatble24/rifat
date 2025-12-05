@@ -19,8 +19,12 @@ import WhyChooseUs from './components/WhyChooseUs';
 import WorkPage from './components/WorkPage';
 import UiUxDesignPage from './components/UiUxDesignPage';
 import WebDesignPage from './components/WebDesignPage';
+import MobileAppDesignPage from './components/MobileAppDesignPage';
+import DesignSystemsPage from './components/DesignSystemsPage';
+import SaasPlatformPage from './components/SaasPlatformPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import AboutUs from './components/AboutUs';
+import WebDesignTechStack from './components/WebDesignTechStack';
 
 function App() {
   return (
@@ -42,6 +46,7 @@ function App() {
               <Pricing />
               <WallOfTrust />
               <FAQ />
+              <WebDesignTechStack />
             </>
           } />
           <Route path="/contact" element={<Contact />} />
@@ -49,6 +54,9 @@ function App() {
           <Route path="/work/:id" element={<ProjectDetailPage />} />
           <Route path="/services/ui-ux-design" element={<UiUxDesignPage />} />
           <Route path="/services/web-design" element={<WebDesignPage />} />
+          <Route path="/services/mobile-app-design" element={<MobileAppDesignPage />} />
+          <Route path="/services/design-systems" element={<DesignSystemsPage />} />
+          <Route path="/services/saas-platforms" element={<SaasPlatformPage />} />
           <Route path="/pricing" element={<PricingPage />} />
         </Routes>
       </Layout>
