@@ -1,8 +1,89 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GitBranch, Play, FileCode, Smartphone, Zap, Search, Map, Target } from 'lucide-react';
+import { GitBranch, Play, FileCode, Smartphone, Zap, Search, Map, Target, CreditCard, ArrowUpRight } from 'lucide-react';
 import AnimatedSection from './ui/AnimatedSection';
+
+const MockAppContent = () => (
+  <div className="w-full bg-[#0A0A0A] text-white pb-8">
+    {/* Header */}
+    <div className="p-5 pt-8 flex justify-between items-center bg-neutral-900 border-b border-white/5">
+      <div className="flex flex-col">
+        <span className="text-[10px] text-white/50 font-medium uppercase tracking-wider mb-0.5">Good Morning</span>
+        <span className="text-lg font-bold text-white leading-tight">Alex Chen</span>
+      </div>
+      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-blue-500 border-2 border-[#0A0A0A] shadow-lg" />
+    </div>
+
+    {/* Balance Card */}
+    <div className="p-5 -mt-2">
+      <div className="bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-2xl p-5 border border-white/10 relative overflow-hidden group shadow-xl">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10" />
+        <div className="relative z-10">
+          <div className="flex justify-between items-start mb-2">
+             <div className="text-[10px] text-white/50 font-bold uppercase tracking-wider">Total Balance</div>
+             <CreditCard size={14} className="text-white/30" />
+          </div>
+          <div className="text-3xl font-bold mb-4 tracking-tight text-white">$24,593.00</div>
+          <div className="flex gap-3 items-center">
+             <div className="h-1.5 flex-1 bg-white/10 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-primary" 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '70%' }}
+                  transition={{ duration: 1 }}
+                />
+             </div>
+             <div className="text-[10px] text-primary font-bold bg-primary/10 px-2 py-0.5 rounded flex items-center gap-1">
+               <ArrowUpRight size={10} /> 12%
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Quick Actions */}
+    <div className="px-5 mb-6 flex justify-between gap-4">
+       {['Send', 'Request', 'Top Up', 'More'].map((label, i) => (
+         <div key={i} className="flex flex-col items-center gap-2 group cursor-pointer flex-1">
+            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:bg-white/10 transition-colors shadow-lg">
+               <div className={`w-5 h-5 rounded-full ${i===0?'bg-primary': 'bg-white/20'}`} />
+            </div>
+            <span className="text-[10px] font-medium text-white/50 group-hover:text-white transition-colors">{label}</span>
+         </div>
+       ))}
+    </div>
+
+    {/* Transactions */}
+    <div className="px-5 space-y-3">
+       <div className="flex justify-between items-end mb-2 px-1">
+          <div className="text-xs font-bold text-white/90">Recent Activity</div>
+          <div className="text-[10px] text-primary cursor-pointer font-medium hover:text-white transition-colors">See All</div>
+       </div>
+       
+       {[
+         { name: "Netflix Sub", cat: "Entertainment", amt: "-$15.00", icon: "bg-red-500", letter: "N" },
+         { name: "Upwork Inc", cat: "Freelance", amt: "+$850.00", icon: "bg-green-500", pos: true, letter: "U" },
+         { name: "Uber Ride", cat: "Transport", amt: "-$24.50", icon: "bg-neutral-700", letter: "R" },
+         { name: "Spotify", cat: "Music", amt: "-$12.00", icon: "bg-green-400", letter: "S" },
+         { name: "Apple Store", cat: "Hardware", amt: "-$299.00", icon: "bg-white text-black", letter: "A" },
+       ].map((t, i) => (
+         <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-neutral-900 border border-white/5 hover:bg-neutral-800 transition-colors">
+            <div className="flex items-center gap-3 flex-1">
+               <div className={`w-9 h-9 rounded-full ${t.icon} flex items-center justify-center text-[10px] font-bold shadow-md shrink-0 ${t.icon.includes('text-black') ? 'text-black' : 'text-white'}`}>
+                  {t.letter}
+               </div>
+               <div className="flex flex-col">
+                  <span className="text-xs font-bold text-white leading-none mb-1">{t.name}</span>
+                  <span className="text-[10px] text-white/40 leading-none">{t.cat}</span>
+               </div>
+            </div>
+            <div className={`text-xs font-bold font-mono text-right ${t.pos ? 'text-green-400' : 'text-white'}`}>{t.amt}</div>
+         </div>
+       ))}
+    </div>
+  </div>
+);
 
 const Workflow: React.FC = () => {
   return (
@@ -122,29 +203,14 @@ const Workflow: React.FC = () => {
                 
                 {/* Phone Mockup with Scroll Animation */}
                 <div className="flex-1 relative flex justify-center">
-                  <div className="w-48 h-full bg-black border-4 border-neutral-800 rounded-t-3xl overflow-hidden relative shadow-2xl">
+                  <div className="w-56 h-full bg-black border-[6px] border-neutral-800 rounded-t-[2.5rem] overflow-hidden relative shadow-2xl">
                      {/* Notch */}
-                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-neutral-800 rounded-b-xl z-20" />
+                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 bg-neutral-800 rounded-b-xl z-20" />
                      
-                     {/* Scrolling Content */}
-                     <div className="w-full animate-[scroll_5s_linear_infinite] hover:pause">
-                        {/* Mock App Content */}
-                        <div className="h-32 bg-neutral-900 p-4 pt-8">
-                           <div className="h-2 w-8 bg-white/20 rounded mb-4" />
-                           <div className="h-6 w-24 bg-white rounded mb-2" />
-                           <div className="h-3 w-32 bg-white/30 rounded" />
-                        </div>
-                        <div className="p-4 space-y-3 bg-neutral-950 min-h-[400px]">
-                           {[1,2,3,4].map(i => (
-                             <div key={i} className="h-24 rounded-xl bg-neutral-900 border border-white/5 p-3 flex gap-3">
-                                <div className="w-12 h-12 rounded-lg bg-white/5" />
-                                <div className="space-y-2 flex-1">
-                                   <div className="h-2 w-full bg-white/10 rounded" />
-                                   <div className="h-2 w-2/3 bg-white/10 rounded" />
-                                </div>
-                             </div>
-                           ))}
-                        </div>
+                     {/* Scrolling Content - Slower Duration and Duplicated Content */}
+                     <div className="w-full animate-[scroll_12s_linear_infinite] hover:pause">
+                        <MockAppContent />
+                        <MockAppContent />
                      </div>
                   </div>
                 </div>
