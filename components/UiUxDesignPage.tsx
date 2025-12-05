@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component } from 'lucide-react';
+import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component, MessageCircle } from 'lucide-react';
 import WhyChooseUs from './WhyChooseUs';
 import AnimatedSection from './ui/AnimatedSection';
 
@@ -388,6 +388,113 @@ const UiUxProcess: React.FC = () => {
   );
 };
 
+const UiUxCTA: React.FC = () => {
+  return (
+    <section className="py-24 md:py-32 relative overflow-hidden bg-[#080808] border-t border-white/5">
+       <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+             
+             {/* Left Content */}
+             <div className="w-full md:w-[55%]">
+                <AnimatedSection>
+                   <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                      Ready to design something <span className="text-primary italic">meaningful?</span>
+                   </h2>
+                   <p className="text-lg md:text-xl text-white-dim mb-10 max-w-xl leading-relaxed">
+                      Your users are waiting for an experience that feels intuitive and right. Whether you're starting fresh or improving what exists, let's build it together.
+                   </p>
+                   
+                   <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center mb-8">
+                      <a 
+                        href="https://cal.com/flowrax/project-discussion" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group px-8 py-4 bg-primary text-black font-bold rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-[0_0_30px_-5px_rgba(16,185,129,0.3)] flex items-center gap-3"
+                      >
+                         Start a Conversation
+                         <MessageCircle size={18} className="group-hover:translate-x-1 transition-transform" />
+                      </a>
+                      <Link 
+                        to="/work" 
+                        className="text-white font-medium hover:text-primary transition-colors flex items-center gap-2 border-b border-transparent hover:border-primary pb-0.5"
+                      >
+                         Explore Our Work <ArrowRight size={16} />
+                      </Link>
+                   </div>
+
+                   <div className="flex items-center gap-3 text-sm text-white/40">
+                      <div className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                      </div>
+                      <span className="font-mono">Currently accepting new projects</span>
+                   </div>
+                </AnimatedSection>
+             </div>
+
+             {/* Right Visual - Abstract Collaboration */}
+             <div className="w-full md:w-[45%] h-[300px] md:h-[400px] relative flex items-center justify-center">
+                <AnimatedSection delay={0.2} className="w-full h-full relative">
+                   {/* Glow */}
+                   <div className="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-50 blur-[60px]" />
+                   
+                   <div className="relative w-full h-full flex items-center justify-center">
+                      {/* Shape 1 (Left) */}
+                      <motion.div
+                         className="absolute w-32 h-32 md:w-48 md:h-48 rounded-[40%] bg-gradient-to-br from-primary/80 to-blue-500/80 blur-2xl opacity-60 mix-blend-screen"
+                         animate={{ 
+                            x: [-20, 20, -20],
+                            y: [-10, 10, -10],
+                            rotate: [0, 90, 0],
+                            scale: [1, 1.1, 1]
+                         }}
+                         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                         style={{ left: '25%' }}
+                      />
+                      
+                      {/* Shape 2 (Right) */}
+                      <motion.div
+                         className="absolute w-32 h-32 md:w-48 md:h-48 rounded-[40%] bg-gradient-to-tr from-purple-500/80 to-pink-500/80 blur-2xl opacity-60 mix-blend-screen"
+                         animate={{ 
+                            x: [20, -20, 20],
+                            y: [10, -10, 10],
+                            rotate: [0, -90, 0],
+                            scale: [1.1, 1, 1.1]
+                         }}
+                         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                         style={{ right: '25%' }}
+                      />
+
+                      {/* Connection Particle Stream */}
+                      <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                         <defs>
+                            <linearGradient id="streamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                               <stop offset="0%" stopColor="#10B981" stopOpacity="0" />
+                               <stop offset="50%" stopColor="#ffffff" stopOpacity="0.5" />
+                               <stop offset="100%" stopColor="#A855F7" stopOpacity="0" />
+                            </linearGradient>
+                         </defs>
+                         <motion.path 
+                            d="M 30% 50% Q 50% 40% 70% 50%"
+                            fill="none"
+                            stroke="url(#streamGradient)"
+                            strokeWidth="2"
+                            strokeDasharray="4 8"
+                            animate={{ strokeDashoffset: [0, -24] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            style={{ opacity: 0.6 }}
+                         />
+                      </svg>
+                   </div>
+                </AnimatedSection>
+             </div>
+
+          </div>
+       </div>
+    </section>
+  );
+};
+
 const UiUxDesignPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -480,7 +587,7 @@ const UiUxDesignPage: React.FC = () => {
                        d="M 20% 60% Q 50% 30% 80% 50%" 
                        fill="none" 
                        stroke="#10B981" 
-                       strokeWidth="2"
+                       strokeWidth="2" 
                        strokeDasharray="6 6"
                        initial={{ pathLength: 0, opacity: 0 }}
                        animate={{ pathLength: 1, opacity: 0.5 }}
@@ -569,6 +676,9 @@ const UiUxDesignPage: React.FC = () => {
 
       {/* Why Flowrax Section */}
       <WhyChooseUs />
+
+      {/* New Conversational CTA */}
+      <UiUxCTA />
 
     </div>
   );
