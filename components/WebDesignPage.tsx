@@ -1,7 +1,8 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Layout, Code, Zap, MousePointer2, Image as ImageIcon, CheckCircle2, Globe, Search, Smartphone, ShoppingBag, BarChart, LayoutTemplate, MonitorPlay, Layers as LayersIcon, UserCircle, Rocket, FileSearch, PenTool, Terminal, Target, MessageCircle, TrendingUp, Gauge, Box, Figma, Wind, Database, Triangle, Hexagon, Command, Palette, BarChart2, ChevronLeft, ChevronRight, Star, Quote, Clock, Sparkles } from 'lucide-react';
+import { ArrowRight, Layout, Code, Zap, MousePointer2, Image as ImageIcon, CheckCircle2, Globe, Search, Smartphone, ShoppingBag, BarChart, LayoutTemplate, MonitorPlay, Layers as LayersIcon, UserCircle, Rocket, FileSearch, PenTool, Terminal, Target, MessageCircle, TrendingUp, Gauge, Box, Figma, Wind, Database, Triangle, Hexagon, Command, Palette, BarChart2, ChevronLeft, ChevronRight, Star, Quote, Clock, Sparkles, ArrowLeft } from 'lucide-react';
 import AnimatedSection from './ui/AnimatedSection';
 
 // --- MAGNETIC INTERACTION COMPONENT ---
@@ -290,105 +291,315 @@ const WebServicesTabs: React.FC = () => {
 }
 
 
-// --- VERTICAL TIMELINE PROCESS (NEW) ---
+// --- PROCESS SECTION VISUALS ---
 
-const TIMELINE_STEPS = [
+const DiscoveryVisual = () => (
+  <motion.div className="w-full h-48 md:h-64 relative bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center">
+    <motion.div 
+      className="absolute inset-0 bg-grid-white opacity-[0.1]" 
+      animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+    />
+    <motion.div 
+      animate={{ x: [-20, 20, -20], y: [-10, 10, -10] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      className="relative z-10"
+    >
+      <Search size={64} className="text-primary" strokeWidth={1.5} />
+      <motion.div 
+        className="absolute -right-8 -top-8 bg-white text-black text-xs font-bold px-2 py-1 rounded"
+        animate={{ scale: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 3, repeat: Infinity, times: [0, 0.2, 0.8, 1] }}
+      >
+        Data Found
+      </motion.div>
+    </motion.div>
+  </motion.div>
+);
+
+const StrategyVisual = () => (
+  <motion.div className="w-full h-48 md:h-64 relative bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center p-8">
+     <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
+        <motion.div 
+          className="h-20 bg-white/10 rounded-lg border border-white/10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        />
+        <motion.div 
+          className="h-20 bg-white/10 rounded-lg border border-white/10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        />
+        <motion.div 
+          className="col-span-2 h-12 bg-primary/20 rounded-lg border border-primary/30"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        />
+     </div>
+  </motion.div>
+);
+
+const VisualDesignVisual = () => (
+  <motion.div className="w-full h-48 md:h-64 relative bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center">
+     <motion.div 
+       className="w-32 h-32 rounded-full bg-gradient-to-tr from-primary to-blue-500 blur-2xl opacity-50"
+       animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+       transition={{ duration: 4, repeat: Infinity }}
+     />
+     <div className="absolute inset-0 flex items-center justify-center gap-4">
+        <motion.div 
+          className="w-12 h-12 rounded-full bg-[#F24E1E]" 
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="w-12 h-12 rounded-full bg-[#0055FF]" 
+          animate={{ y: [0, 20, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        />
+        <motion.div 
+          className="w-12 h-12 rounded-full bg-[#10B981]" 
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+     </div>
+  </motion.div>
+);
+
+const PrototypingVisual = () => (
+  <motion.div className="w-full h-48 md:h-64 relative bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center">
+     <div className="relative">
+       <motion.div 
+         className="w-40 h-12 bg-primary rounded-lg flex items-center justify-center text-black font-bold shadow-lg"
+         whileHover={{ scale: 1.05 }}
+       >
+         Click Me
+       </motion.div>
+       <motion.div 
+         className="absolute top-1/2 left-1/2"
+         animate={{ 
+           x: [40, 0, 0, 40],
+           y: [40, 0, 0, 40],
+           scale: [1, 0.9, 0.9, 1]
+         }}
+         transition={{ duration: 3, repeat: Infinity, times: [0, 0.4, 0.6, 1] }}
+       >
+         <MousePointer2 className="text-white drop-shadow-lg fill-black" size={32} />
+         <motion.div 
+           className="absolute -inset-4 rounded-full border-2 border-white/50"
+           animate={{ scale: [0, 1.5], opacity: [1, 0] }}
+           transition={{ duration: 1, repeat: Infinity, delay: 1.2 }}
+         />
+       </motion.div>
+     </div>
+  </motion.div>
+);
+
+const HandoffVisual = () => (
+  <motion.div className="w-full h-48 md:h-64 relative bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center font-mono text-sm">
+     <div className="bg-black/50 p-6 rounded-xl border border-white/10 shadow-xl backdrop-blur-sm w-3/4">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ staggerChildren: 0.1 }}
+        >
+           <div className="flex gap-2 text-purple-400 mb-2">
+              <span>&lt;Component</span>
+              <span className="text-blue-400">prop="value"</span>
+              <span>/&gt;</span>
+           </div>
+           <div className="pl-4 text-white-dim mb-1">.button {'{'}</div>
+           <div className="pl-8 text-primary">background: #10B981;</div>
+           <div className="pl-8 text-primary">border-radius: 8px;</div>
+           <div className="pl-4 text-white-dim">{'}'}</div>
+        </motion.div>
+     </div>
+  </motion.div>
+);
+
+const LaunchVisual = () => (
+  <motion.div className="w-full h-48 md:h-64 relative bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center">
+     <motion.div 
+       className="relative z-10"
+       animate={{ y: [10, -10, 10] }}
+       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+     >
+        <Rocket size={64} className="text-primary" />
+     </motion.div>
+     {[...Array(20)].map((_, i) => (
+       <motion.div
+         key={i}
+         className="absolute bg-white/20 w-1 h-1 rounded-full"
+         initial={{ y: 200, x: Math.random() * 200 - 100, opacity: 0 }}
+         animate={{ y: -200, opacity: [0, 1, 0] }}
+         transition={{ duration: 1 + Math.random(), repeat: Infinity, delay: Math.random() }}
+         style={{ left: '50%' }}
+       />
+     ))}
+  </motion.div>
+);
+
+// --- PROCESS SECTION COMPONENT ---
+
+const PROCESS_STEPS = [
   {
-    id: "01",
     title: "Discovery & Research",
-    description: "We dive deep into your business, goals, audience, and competitors to build a solid foundation.",
-    icon: FileSearch
+    description: "We immerse ourselves in your world — understanding your business, audience, and competition to lay the groundwork for success.",
+    visual: <DiscoveryVisual />
   },
   {
-    id: "02",
     title: "Strategy & Wireframing",
-    description: "We map out the structure, user flows, and layout before any visual design begins.",
-    icon: Layout
+    description: "We architect the blueprint — mapping user journeys, content hierarchy, and page structures before pixels are placed.",
+    visual: <StrategyVisual />
   },
   {
-    id: "03",
     title: "Visual Design",
-    description: "We craft the look and feel, bringing your brand to life through stunning visuals.",
-    icon: PenTool
+    description: "We bring ideas to life — crafting stunning interfaces that balance beauty with usability.",
+    visual: <VisualDesignVisual />
   },
   {
-    id: "04",
     title: "Prototyping & Testing",
-    description: "We build interactive prototypes and test with real users to refine the experience.",
-    icon: MousePointer2
+    description: "We validate before we build — creating interactive prototypes and gathering real user feedback.",
+    visual: <PrototypingVisual />
   },
   {
-    id: "05",
     title: "Development Handoff",
-    description: "We prepare detailed specs and assets for seamless developer implementation.",
-    icon: Code
+    description: "We bridge design and code — delivering pixel-perfect specs and assets for seamless implementation.",
+    visual: <HandoffVisual />
   },
   {
-    id: "06",
     title: "Launch & Support",
-    description: "We help you launch successfully and provide ongoing support as you grow.",
-    icon: Rocket
+    description: "We ensure a flawless debut — and stick around to help you evolve and optimize.",
+    visual: <LaunchVisual />
   }
 ];
 
-const WebDesignTimeline: React.FC = () => {
+const WebDesignProcess: React.FC = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const nextStep = () => {
+    if (currentStep < PROCESS_STEPS.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   return (
-    <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
-        <AnimatedSection className="text-center mb-20">
-          <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">How We Work</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white">From Idea to Launch</h2>
+        <AnimatedSection className="text-center mb-16 md:mb-24">
+           <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">How We Work</span>
+           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Process</h2>
+           <p className="text-white-dim text-lg">Six steps to transform your vision into reality.</p>
         </AnimatedSection>
 
-        <div className="relative">
-          {/* Center Line (Left on mobile) */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-white/10 -translate-x-1/2" />
+        <div className="flex flex-col md:flex-row items-center min-h-[500px] gap-12 md:gap-0">
+          
+          {/* LEFT: Giant Number & Nav */}
+          <div className="w-full md:w-[45%] flex flex-col items-center justify-center relative">
+             <div className="relative h-[250px] md:h-[400px] flex items-center justify-center w-full">
+               <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentStep}
+                    initial={{ opacity: 0, scale: 0.8, rotate: -5, y: 50 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
+                    exit={{ opacity: 0, scale: 1.1, rotate: 5, y: -50 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="text-[180px] md:text-[350px] font-black leading-none text-transparent select-none absolute"
+                    style={{ WebkitTextStroke: '2px rgba(255,255,255,0.1)' }}
+                  >
+                    {String(currentStep + 1).padStart(2, '0')}
+                  </motion.span>
+               </AnimatePresence>
+             </div>
 
-          <div className="flex flex-col gap-12 md:gap-24">
-            {TIMELINE_STEPS.map((step, index) => {
-              const isEven = index % 2 === 1;
-              
-              return (
-                <div key={step.id} className={`flex flex-col md:flex-row items-center w-full relative ${isEven ? 'md:flex-row-reverse' : ''}`}>
-                  
-                  {/* Timeline Dot */}
-                  <motion.div 
-                    initial={{ scale: 0, backgroundColor: "#050505" }}
-                    whileInView={{ scale: 1, backgroundColor: "#10B981" }}
-                    viewport={{ once: true, margin: "-20%" }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full border-2 border-primary z-20 -translate-x-1/2"
-                  />
+             {/* Progress Dots */}
+             <div className="flex gap-3 mt-8 z-10">
+                {PROCESS_STEPS.map((_, index) => (
+                   <button
+                     key={index}
+                     onClick={() => setCurrentStep(index)}
+                     className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentStep ? 'w-8 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
+                     }`}
+                     aria-label={`Go to step ${index + 1}`}
+                   />
+                ))}
+             </div>
 
-                  {/* Spacer for Desktop Layout */}
-                  <div className="hidden md:block w-1/2" />
-
-                  {/* Card Content */}
-                  <div className={`w-full md:w-1/2 pl-20 md:pl-0 ${isEven ? 'md:pr-16' : 'md:pl-16'}`}>
-                    <motion.div
-                      initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-20%" }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                      className={`relative ${isEven ? 'md:text-right' : 'md:text-left'}`}
-                    >
-                      <div className={`text-4xl md:text-5xl font-bold text-white/10 mb-2 font-mono ${isEven ? 'md:ml-auto' : ''}`}>
-                        {step.id}
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-3 flex items-center gap-3 md:inline-flex">
-                        {step.title}
-                      </h3>
-                      <p className="text-white-dim text-lg leading-relaxed">
-                        {step.description}
-                      </p>
-                    </motion.div>
-                  </div>
-
-                </div>
-              );
-            })}
+             {/* Arrows */}
+             <div className="flex gap-4 mt-6 z-10">
+                <button 
+                  onClick={prevStep}
+                  disabled={currentStep === 0}
+                  className="p-3 rounded-full border border-white/10 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                   <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={nextStep}
+                  disabled={currentStep === PROCESS_STEPS.length - 1}
+                  className="p-3 rounded-full border border-white/10 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                   <ChevronRight size={24} />
+                </button>
+             </div>
           </div>
+
+          {/* RIGHT: Content Card */}
+          <div className="w-full md:w-[55%] md:pl-12">
+             <AnimatePresence mode="wait">
+                <motion.div
+                   key={currentStep}
+                   initial={{ opacity: 0, y: 40 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: -40 }}
+                   transition={{ duration: 0.5, ease: "easeOut" }}
+                   className="flex flex-col gap-6"
+                >
+                   <div>
+                      <motion.h3 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-3xl md:text-4xl font-bold text-white mb-4"
+                      >
+                         {PROCESS_STEPS[currentStep].title}
+                      </motion.h3>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-white-dim text-lg leading-relaxed max-w-lg"
+                      >
+                         {PROCESS_STEPS[currentStep].description}
+                      </motion.p>
+                   </div>
+                   
+                   <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="mt-4 rounded-3xl border border-white/10 overflow-hidden shadow-2xl"
+                   >
+                      {PROCESS_STEPS[currentStep].visual}
+                   </motion.div>
+                </motion.div>
+             </AnimatePresence>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1267,7 +1478,7 @@ const WebDesignPage: React.FC = () => {
       <WebServicesTabs />
 
       {/* ---------------- CINEMATIC PROCESS (NEW) ---------------- */}
-      <WebDesignTimeline />
+      <WebDesignProcess />
 
       {/* ---------------- VALUE PROPOSITION BENTO GRID ---------------- */}
       <WebValueProp />
