@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, Variants } from 'framer-motion';
-import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Particles from './ui/Particles';
 
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100vh] flex flex-col items-center justify-start pt-32 pb-12 md:pb-24 overflow-hidden bg-[#050505]"
+      className="relative min-h-[100dvh] flex flex-col items-center justify-start pt-28 md:pt-32 pb-12 md:pb-24 overflow-hidden bg-[#050505]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -105,45 +105,45 @@ const Hero: React.FC = () => {
         
         {/* 2. Dynamic Typography */}
         <motion.div 
-          className="text-center mb-12 md:mb-16 relative z-20 w-full flex flex-col items-center"
+          className="text-center mb-10 md:mb-16 relative z-20 w-full flex flex-col items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Badge */}
-          <motion.div variants={wordVariants} className="flex justify-center mb-8">
-              <div className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)] flex items-center gap-2">
-                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <motion.div variants={wordVariants} className="flex justify-center mb-6 md:mb-8">
+              <div className="px-3 py-1.5 md:px-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)] flex items-center gap-2">
+                 <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary animate-pulse" />
                  Global Design Agency
               </div>
           </motion.div>
 
           {/* Headline */}
-          <div className="flex flex-col items-center gap-2 mb-8">
+          <div className="flex flex-col items-center gap-1 md:gap-2 mb-6 md:mb-8">
              {/* Line 1 */}
-             <div className="flex flex-wrap justify-center items-baseline gap-x-3 md:gap-x-5 px-2">
-                <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
+             <div className="flex flex-wrap justify-center items-baseline gap-x-2 md:gap-x-5 px-1">
+                <motion.span variants={wordVariants} className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white">
                   We
                 </motion.span>
-                <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-serif italic font-medium tracking-tight text-white-dim">
+                <motion.span variants={wordVariants} className="text-4xl sm:text-5xl md:text-7xl font-serif italic font-medium tracking-tight text-white-dim">
                   Design
                 </motion.span>
-                <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
+                <motion.span variants={wordVariants} className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white">
                   Products
                 </motion.span>
              </div>
              
              {/* Line 2 */}
-             <div className="flex flex-wrap justify-center items-baseline gap-x-3 md:gap-x-5 px-2">
-                 <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
+             <div className="flex flex-wrap justify-center items-baseline gap-x-2 md:gap-x-5 px-1">
+                 <motion.span variants={wordVariants} className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white">
                    That
                  </motion.span>
-                 <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-serif italic font-medium tracking-tight text-white-dim">
+                 <motion.span variants={wordVariants} className="text-4xl sm:text-5xl md:text-7xl font-serif italic font-medium tracking-tight text-white-dim">
                    Drive
                  </motion.span>
                  <motion.span 
                    variants={wordVariants}
-                   className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-primary-glow drop-shadow-[0_0_30px_rgba(16,185,129,0.3)]"
+                   className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-primary-glow drop-shadow-[0_0_30px_rgba(16,185,129,0.3)]"
                  >
                    Results.
                  </motion.span>
@@ -153,7 +153,7 @@ const Hero: React.FC = () => {
           {/* Description Text */}
           <motion.p 
             variants={wordVariants}
-            className="text-white-dim text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed text-center font-light"
+            className="text-white-dim text-base md:text-lg max-w-xl md:max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed text-center font-light px-4"
           >
             Flowrax is a strategic design partner for forward-thinking companies. We blend aesthetics with architecture to build systems that drive growth.
           </motion.p>
@@ -161,7 +161,7 @@ const Hero: React.FC = () => {
           {/* Social Proof */}
           <motion.div 
             variants={wordVariants}
-            className="flex items-center gap-4 p-2 pr-6 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors cursor-default"
+            className="flex items-center gap-4 p-2 pr-6 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors cursor-default scale-90 md:scale-100"
           >
              <div className="flex -space-x-3 items-center">
                {[
@@ -169,11 +169,11 @@ const Hero: React.FC = () => {
                   "https://ik.imagekit.io/flowrax/cl.jpg",
                   "https://ik.imagekit.io/flowrax/cl%20(1)%20dd_1.webp?updatedAt=1764806666597"
                 ].map((src, i) => (
-                 <div key={i} className="relative w-9 h-9 rounded-full border-2 border-[#050505] overflow-hidden shadow-lg">
+                 <div key={i} className="relative w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-[#050505] overflow-hidden shadow-lg">
                    <img src={src} alt={`Trusted Founder ${i+1}`} className="w-full h-full object-cover" />
                  </div>
                ))}
-               <div className="relative w-9 h-9 rounded-full border-2 border-[#050505] bg-white flex items-center justify-center shadow-lg z-10">
+               <div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-[#050505] bg-white flex items-center justify-center shadow-lg z-10">
                  <span className="text-black font-extrabold text-[10px]">50+</span>
                </div>
              </div>
@@ -191,7 +191,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center gap-4 mb-20 relative z-20 w-full sm:w-auto px-8 sm:px-0"
+          className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 mb-16 md:mb-20 relative z-20 w-full sm:w-auto px-6 sm:px-0"
         >
           <a 
             href="https://cal.com/flowrax/project-discussion"
@@ -213,7 +213,7 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* 3. Interactive Video Centerpiece with Floating Widgets */}
-        <div className="perspective-[2000px] w-full max-w-6xl flex justify-center pb-12 md:pb-24 px-4 sm:px-0">
+        <div className="perspective-[2000px] w-full max-w-6xl flex justify-center pb-8 md:pb-24 px-2 sm:px-0">
           <motion.div
             style={{ 
               rotateX, 
@@ -223,10 +223,10 @@ const Hero: React.FC = () => {
               y: dashboardY,
               transformStyle: "preserve-3d" // Crucial for 3D children
             }}
-            className="w-full relative aspect-[16/10] md:aspect-[21/9] bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)]"
+            className="w-full relative aspect-video md:aspect-[21/9] bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)]"
           >
              {/* Main Video Content */}
-             <div className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden ring-1 ring-white/10 group">
+             <div className="absolute inset-0 rounded-xl md:rounded-3xl overflow-hidden ring-1 ring-white/10 group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-blue-500/10 pointer-events-none z-10 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <video 
@@ -243,6 +243,7 @@ const Hero: React.FC = () => {
              </div>
 
              {/* --- FLOATING WIDGETS (PARALLAX) --- */}
+             {/* Note: Hidden on mobile to prevent clutter and overlay issues on small screens */}
              
              {/* Left Widget: Revenue Graph */}
              <motion.div 
@@ -300,4 +301,3 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
-    
