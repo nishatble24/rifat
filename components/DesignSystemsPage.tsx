@@ -6,6 +6,7 @@ import { ArrowRight, Box, Layers, Grid, ToggleRight, Type, Palette, CheckCircle2
 import AnimatedSection from './ui/AnimatedSection';
 import WhyChooseUs from './WhyChooseUs';
 import WebDesignTechStack from './WebDesignTechStack';
+import ClientReviews from './ClientReviews';
 
 // --- VISUAL COMPONENTS FOR LAYERS ---
 
@@ -430,6 +431,7 @@ const DesignSystemsPage: React.FC = () => {
       <DesignSystemExpertise />
       <WhyChooseUs />
       <WebDesignTechStack />
+      <ClientReviews />
     </div>
   );
 };

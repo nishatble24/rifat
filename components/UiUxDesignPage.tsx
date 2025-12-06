@@ -7,6 +7,7 @@ import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCir
 import WhyChooseUs from './WhyChooseUs';
 import AnimatedSection from './ui/AnimatedSection';
 import { PROJECTS } from '../constants';
+import ClientReviews from './ClientReviews';
 
 // --- EXPERTISE DATA ---
 const EXPERTISE_AREAS = [
@@ -743,6 +744,9 @@ const UiUxDesignPage: React.FC = () => {
 
       {/* Why Flowrax Section */}
       <WhyChooseUs />
+
+      {/* Client Reviews Section */}
+      <ClientReviews />
 
       {/* New Conversational CTA */}
       <UiUxCTA />

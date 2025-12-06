@@ -6,6 +6,7 @@ import { ArrowRight, Layers, BarChart3, Users, Settings, Bell, Search, Activity,
 import AnimatedSection from './ui/AnimatedSection';
 import WhyChooseUs from './WhyChooseUs';
 import WebDesignTechStack from './WebDesignTechStack';
+import ClientReviews from './ClientReviews';
 
 // --- HERO SECTION ---
 const SaasHero: React.FC = () => {
@@ -980,6 +981,7 @@ const SaasPlatformPage: React.FC = () => {
       <SaasExpertise />
       <WhyChooseUs />
       <WebDesignTechStack />
+      <ClientReviews />
     </div>
   );
 };
