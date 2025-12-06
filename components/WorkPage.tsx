@@ -6,6 +6,7 @@ import AnimatedSection from './ui/AnimatedSection';
 import { ArrowUpRight, Quote, ArrowRight, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import WhyChooseUs from './WhyChooseUs';
+import WebDesignTechStack from './WebDesignTechStack';
 
 const FILTERS = ['All Projects', 'UI/UX', 'Branding', 'Mobile Apps'];
 
@@ -166,6 +167,9 @@ const WorkPage: React.FC = () => {
 
       {/* Why Flowrax Section */}
       <WhyChooseUs />
+
+      {/* Our Toolkit Section */}
+      <WebDesignTechStack />
 
       {/* Final Call-to-Action Section */}
       <section className="py-24 md:py-32 relative overflow-hidden bg-[#080808] border-t border-white/5">
