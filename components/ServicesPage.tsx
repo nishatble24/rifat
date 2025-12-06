@@ -856,7 +856,7 @@ const IndustriesSection = () => {
   )
 }
 
-const IndustryCard = ({ industry, index }: { industry: any, index: number }) => (
+const IndustryCard: React.FC<{ industry: any; index: number }> = ({ industry, index }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.8 }}
     whileInView={{ opacity: 1, scale: 1 }}
