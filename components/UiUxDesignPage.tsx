@@ -432,60 +432,49 @@ const UiUxCTA: React.FC = () => {
                 </AnimatedSection>
              </div>
 
-             {/* Right Visual - Abstract Collaboration */}
-             <div className="w-full md:w-[45%] h-[300px] md:h-[400px] relative flex items-center justify-center">
-                <AnimatedSection delay={0.2} className="w-full h-full relative">
-                   {/* Glow */}
-                   <div className="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-50 blur-[60px]" />
+             {/* Right Visual - Founder Image */}
+             <div className="w-full md:w-[45%] h-[400px] md:h-[500px] relative flex items-end justify-center">
+                <AnimatedSection delay={0.2} className="w-full h-full relative flex items-end justify-center">
                    
-                   <div className="relative w-full h-full flex items-center justify-center">
-                      {/* Shape 1 (Left) */}
-                      <motion.div
-                         className="absolute w-32 h-32 md:w-48 md:h-48 rounded-[40%] bg-gradient-to-br from-primary/80 to-blue-500/80 blur-2xl opacity-60 mix-blend-screen"
-                         animate={{ 
-                            x: [-20, 20, -20],
-                            y: [-10, 10, -10],
-                            rotate: [0, 90, 0],
-                            scale: [1, 1.1, 1]
-                         }}
-                         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                         style={{ left: '25%' }}
-                      />
-                      
-                      {/* Shape 2 (Right) */}
-                      <motion.div
-                         className="absolute w-32 h-32 md:w-48 md:h-48 rounded-[40%] bg-gradient-to-tr from-purple-500/80 to-pink-500/80 blur-2xl opacity-60 mix-blend-screen"
-                         animate={{ 
-                            x: [20, -20, 20],
-                            y: [10, -10, 10],
-                            rotate: [0, -90, 0],
-                            scale: [1.1, 1, 1.1]
-                         }}
-                         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                         style={{ right: '25%' }}
-                      />
+                   {/* Gradient Accent Base */}
+                   <motion.div 
+                     initial={{ opacity: 0, scale: 0.5 }}
+                     whileInView={{ opacity: 1, scale: 1 }}
+                     transition={{ duration: 1.2, ease: "easeOut" }}
+                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-[70%] z-0 pointer-events-none"
+                   >
+                      {/* Vibrant Conic Gradient Mix for Organic Feel */}
+                      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,_#22D3EE_0deg,_#3B82F6_120deg,_#8B5CF6_240deg,_#E879F9_360deg)] opacity-20 blur-[80px] rounded-full mix-blend-screen" />
+                      {/* Deeper Base for Grounding */}
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-gradient-to-t from-blue-600/30 to-purple-500/30 blur-[60px] rounded-full" />
+                   </motion.div>
 
-                      {/* Connection Particle Stream */}
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                         <defs>
-                            <linearGradient id="streamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                               <stop offset="0%" stopColor="#10B981" stopOpacity="0" />
-                               <stop offset="50%" stopColor="#ffffff" stopOpacity="0.5" />
-                               <stop offset="100%" stopColor="#A855F7" stopOpacity="0" />
-                            </linearGradient>
-                         </defs>
-                         <motion.path 
-                            d="M 30% 50% Q 50% 40% 70% 50%"
-                            fill="none"
-                            stroke="url(#streamGradient)"
-                            strokeWidth="2"
-                            strokeDasharray="4 8"
-                            animate={{ strokeDashoffset: [0, -24] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                            style={{ opacity: 0.6 }}
-                         />
-                      </svg>
-                   </div>
+                   {/* Image */}
+                   <motion.img 
+                      src="https://ik.imagekit.io/flowrax/rimagrd.png"
+                      alt="Rima Aktar - COO & Co-Founder"
+                      className="relative z-10 h-full w-auto object-contain object-bottom drop-shadow-2xl"
+                      initial={{ y: 40, opacity: 0, filter: "blur(10px)" }}
+                      whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                   />
+
+                   {/* Name Overlay */}
+                   <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6, duration: 0.6 }}
+                      className="absolute bottom-8 right-0 md:-right-8 z-20"
+                   >
+                      <div className="bg-white/5 backdrop-blur-xl border border-white/10 px-5 py-3 rounded-2xl shadow-glass flex items-center gap-3">
+                         <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                         <div>
+                            <p className="text-white font-bold text-sm leading-none mb-1">Rima Aktar</p>
+                            <p className="text-white-dim text-xs font-medium tracking-wide">COO & Co-Founder</p>
+                         </div>
+                      </div>
+                   </motion.div>
+
                 </AnimatedSection>
              </div>
 

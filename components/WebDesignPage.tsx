@@ -1118,6 +1118,115 @@ const WebDesignCTA: React.FC = () => {
   )
 }
 
+const MockBrowserContent = () => (
+  <div className="w-full bg-[#050505] text-white font-sans select-none pointer-events-none">
+    {/* Navbar Placeholder */}
+    <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#0A0A0A]">
+       <div className="flex gap-2 items-center">
+          <div className="w-6 h-6 rounded bg-primary/20 flex items-center justify-center">
+             <div className="w-3 h-3 bg-primary rounded-sm" />
+          </div>
+          <div className="w-16 h-2 bg-white/20 rounded-full" />
+       </div>
+       <div className="flex gap-4">
+          <div className="w-12 h-1.5 bg-white/10 rounded-full" />
+          <div className="w-12 h-1.5 bg-white/10 rounded-full" />
+          <div className="w-12 h-1.5 bg-white/10 rounded-full" />
+       </div>
+    </div>
+
+    {/* Hero Section */}
+    <div className="p-8 pb-12 flex flex-col items-center text-center border-b border-white/5 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent">
+       <div className="px-2 py-0.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[6px] font-bold uppercase tracking-wider mb-4">
+          New Release 2.0
+       </div>
+       {/* Headline */}
+       <div className="space-y-2 mb-6">
+          <div className="w-48 h-4 bg-white rounded-md mx-auto" />
+          <div className="w-32 h-4 bg-white/50 rounded-md mx-auto" />
+       </div>
+       {/* Subtext */}
+       <div className="space-y-1.5 mb-8">
+          <div className="w-64 h-1.5 bg-white/20 rounded-full mx-auto" />
+          <div className="w-48 h-1.5 bg-white/20 rounded-full mx-auto" />
+       </div>
+       
+       <div className="flex gap-3">
+          <div className="h-6 w-20 bg-primary rounded shadow-lg shadow-primary/20" />
+          <div className="h-6 w-20 bg-white/5 rounded border border-white/10" />
+       </div>
+    </div>
+
+    {/* Dashboard Preview / Bento Grid */}
+    <div className="p-6 bg-[#080808]">
+       <div className="grid grid-cols-2 gap-3 mb-3">
+          {/* Card 1 */}
+          <div className="bg-[#111] p-3 rounded-lg border border-white/5 flex flex-col gap-2">
+             <div className="w-6 h-6 rounded bg-blue-500/20 text-blue-500 flex items-center justify-center">
+                <div className="w-3 h-3 bg-current rounded-sm" />
+             </div>
+             <div className="w-16 h-2 bg-white/20 rounded-full" />
+             <div className="w-full h-12 bg-white/5 rounded border border-white/5 mt-auto relative overflow-hidden">
+                <div className="absolute top-2 left-2 w-full h-full bg-blue-500/10 rounded-tl-md" />
+             </div>
+          </div>
+          {/* Card 2 */}
+          <div className="bg-[#111] p-3 rounded-lg border border-white/5 flex flex-col gap-2">
+             <div className="w-6 h-6 rounded bg-purple-500/20 text-purple-500 flex items-center justify-center">
+                <div className="w-3 h-3 bg-current rounded-sm" />
+             </div>
+             <div className="w-16 h-2 bg-white/20 rounded-full" />
+             <div className="flex gap-1 mt-auto items-end h-12">
+                <div className="h-6 w-1.5 bg-purple-500/20 rounded-sm" />
+                <div className="h-8 w-1.5 bg-purple-500/20 rounded-sm" />
+                <div className="h-10 w-1.5 bg-purple-500 rounded-sm" />
+                <div className="h-5 w-1.5 bg-purple-500/20 rounded-sm" />
+                <div className="h-7 w-1.5 bg-purple-500/20 rounded-sm" />
+             </div>
+          </div>
+       </div>
+       {/* Wide Card */}
+       <div className="bg-[#111] p-3 rounded-lg border border-white/5 flex items-center gap-3">
+          <div className="w-8 h-8 rounded bg-green-500/20 flex items-center justify-center">
+             <div className="w-4 h-4 bg-green-500 rounded-full" />
+          </div>
+          <div className="space-y-1.5 flex-1">
+             <div className="w-24 h-2 bg-white/20 rounded-full" />
+             <div className="w-full h-1.5 bg-white/10 rounded-full" />
+          </div>
+          <div className="w-12 h-4 bg-white/5 rounded border border-white/5" />
+       </div>
+    </div>
+
+    {/* Feature List */}
+    <div className="p-6 border-t border-white/5 bg-[#050505]">
+       <div className="flex justify-between mb-4">
+          <div className="w-20 h-2 bg-white/20 rounded-full" />
+          <div className="w-4 h-2 bg-white/10 rounded-full" />
+       </div>
+       {[1, 2, 3].map(i => (
+          <div key={i} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
+             <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/5">
+                <div className={`w-2 h-2 rounded-full ${i===1?'bg-primary': i===2?'bg-blue-500':'bg-purple-500'}`} />
+             </div>
+             <div className="space-y-1.5 w-full">
+                <div className="w-32 h-2 bg-white/10 rounded-full" />
+                <div className="w-20 h-1.5 bg-white/5 rounded-full" />
+             </div>
+          </div>
+       ))}
+    </div>
+    
+    {/* Footer Area */}
+    <div className="p-6 bg-[#030303] text-center border-t border-white/5">
+        <div className="w-24 h-2 bg-white/10 rounded-full mx-auto mb-3" />
+        <div className="w-full h-8 bg-white/5 rounded border border-white/10 flex items-center justify-center">
+           <div className="w-16 h-1.5 bg-white/20 rounded-full" />
+        </div>
+    </div>
+  </div>
+);
+
 const WebDesignHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
@@ -1242,29 +1351,7 @@ const WebDesignHero = () => {
                      >
                         {/* Mock Page Content (Doubled for loop) */}
                         {[1, 2].map((iter) => (
-                           <div key={iter} className="w-full">
-                              {/* Hero Block */}
-                              <div className="h-64 p-8 flex flex-col justify-center items-center text-center border-b border-white/5">
-                                 <div className="h-2 w-20 bg-primary/20 rounded-full mb-4" />
-                                 <div className="h-6 w-3/4 bg-white/10 rounded mb-2" />
-                                 <div className="h-6 w-1/2 bg-white/10 rounded mb-6" />
-                                 <div className="h-10 w-32 bg-white rounded-lg" />
-                              </div>
-                              {/* Grid Block */}
-                              <div className="p-8 grid grid-cols-2 gap-4 border-b border-white/5">
-                                 <div className="aspect-square bg-white/5 rounded-lg" />
-                                 <div className="aspect-square bg-white/5 rounded-lg" />
-                              </div>
-                              {/* Feature Block */}
-                              <div className="p-8 flex items-center gap-4 border-b border-white/5">
-                                 <div className="w-16 h-16 bg-white/5 rounded-lg shrink-0" />
-                                 <div className="space-y-2 w-full">
-                                    <div className="h-3 w-2/3 bg-white/10 rounded" />
-                                    <div className="h-2 w-full bg-white/5 rounded" />
-                                    <div className="h-2 w-full bg-white/5 rounded" />
-                                 </div>
-                              </div>
-                           </div>
+                           <MockBrowserContent key={iter} />
                         ))}
                      </motion.div>
 

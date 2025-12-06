@@ -69,14 +69,14 @@ const Contact: React.FC = () => {
                     <div className="relative group cursor-pointer">
                       <div className="absolute -inset-0.5 bg-gradient-to-tr from-primary to-blue-600 rounded-full opacity-70 group-hover:opacity-100 blur-[2px] transition-opacity" />
                       <img 
-                        src="https://ik.imagekit.io/flowrax/rim_coo.webp" 
-                        alt="Rima Aktar" 
+                        src="https://ik.imagekit.io/flowrax/ricn.webp" 
+                        alt="Rifat Amin" 
                         className="relative w-16 h-16 rounded-full object-cover border-2 border-black"
                       />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-lg">Rima Aktar</h4>
-                      <p className="text-primary text-sm font-medium">COO & Co-founder</p>
+                      <h4 className="text-white font-bold text-lg">Rifat Amin</h4>
+                      <p className="text-primary text-sm font-medium">CEO & Co-Founder</p>
                     </div>
                   </div>
 

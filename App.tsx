@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { HashRouter, Routes, Route, useParams, Link } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -25,6 +24,7 @@ import SaasPlatformPage from './components/SaasPlatformPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import AboutUs from './components/AboutUs';
 import WebDesignTechStack from './components/WebDesignTechStack';
+import FounderCTA from './components/FounderCTA';
 
 function App() {
   return (
@@ -47,6 +47,7 @@ function App() {
               <WallOfTrust />
               <FAQ />
               <WebDesignTechStack />
+              <FounderCTA />
             </>
           } />
           <Route path="/contact" element={<Contact />} />
