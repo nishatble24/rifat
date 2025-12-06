@@ -150,7 +150,7 @@ const Hero: React.FC = () => {
         >
           {/* Badge */}
           <motion.div variants={wordVariants} className="flex justify-center mb-8">
-              <div className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-xs font-bold uppercase tracking-widest text-white/70 shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)] flex items-center gap-2">
+              <div className="px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/70 shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)] flex items-center gap-1.5 md:gap-2">
                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                  GLOBAL DESIGN AGENCY
               </div>
