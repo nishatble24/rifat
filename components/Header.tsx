@@ -158,6 +158,12 @@ const Header: React.FC<HeaderProps> = ({ bannerOffset = 0 }) => {
                                     {/* Gradient Overlay for text readability */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
                                  </div>
+                                 
+                                 {/* Added Title and Description */}
+                                 <h5 className="text-sm font-bold text-white mb-1">Enterprise Design System</h5>
+                                 <p className="text-xs text-white-dim mb-3 line-clamp-2 leading-relaxed">
+                                   Scalable component library unifying a global fintech ecosystem.
+                                 </p>
                                </div>
 
                                <Link to="/work" className="flex items-center gap-2 text-xs font-bold text-primary hover:text-white transition-colors">

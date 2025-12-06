@@ -1,10 +1,12 @@
 
+// ... existing imports ...
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component, MessageCircle } from 'lucide-react';
+import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component, MessageCircle, ArrowUpRight } from 'lucide-react';
 import WhyChooseUs from './WhyChooseUs';
 import AnimatedSection from './ui/AnimatedSection';
+import { PROJECTS } from '../constants';
 
 // --- EXPERTISE DATA ---
 const EXPERTISE_AREAS = [
@@ -279,7 +281,12 @@ const UiUxProcess: React.FC = () => {
                        <div className="w-12 h-12 rounded-full bg-black border-2 border-purple-500 flex items-center justify-center text-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.4)] z-10 relative">
                           {React.createElement(step.icon, { size: 20 })}
                        </div>
-                       <div className="absolute top-1/2 right-full mr-4 text-xs font-mono text-purple-500 font-bold tracking-widest bg-black px-2 py-1 rounded border border-purple-500/30">
+                       <div className={`absolute text-xs font-mono text-purple-500 font-bold tracking-widest bg-black px-2 py-1 rounded border border-purple-500/30 whitespace-nowrap
+                          ${i === 2 
+                            ? 'top-full left-1/2 -translate-x-1/2 mt-3' 
+                            : 'top-1/2 left-full ml-4 -translate-y-1/2'
+                          }
+                       `}>
                           RESEARCH
                        </div>
                     </div>
@@ -312,7 +319,12 @@ const UiUxProcess: React.FC = () => {
                        <div className="w-12 h-12 rounded-full bg-black border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_20px_rgba(16,185,129,0.4)] z-10 relative">
                           {React.createElement(step.icon, { size: 20 })}
                        </div>
-                       <div className="absolute top-1/2 left-full ml-4 text-xs font-mono text-primary font-bold tracking-widest bg-black px-2 py-1 rounded border border-primary/30">
+                       <div className={`absolute text-xs font-mono text-primary font-bold tracking-widest bg-black px-2 py-1 rounded border border-primary/30 whitespace-nowrap
+                          ${i === 2 
+                            ? 'top-full left-1/2 -translate-x-1/2 mt-3' 
+                            : 'top-1/2 right-full mr-4 -translate-y-1/2'
+                          }
+                       `}>
                           DESIGN
                        </div>
                     </div>
@@ -383,6 +395,69 @@ const UiUxProcess: React.FC = () => {
             </AnimatedSection>
         </div>
 
+      </div>
+    </section>
+  );
+};
+
+// --- SELECTED UI/UX WORK SECTION ---
+
+const UIUX_PROJECTS = PROJECTS.filter(p => ['7', '1', '4', '2'].includes(p.id));
+
+const UiUxSelectedWork: React.FC = () => {
+  return (
+    <section className="py-24 bg-black/40">
+      <div className="max-w-7xl mx-auto px-6">
+        <AnimatedSection className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected UI/UX Work</h2>
+            <p className="text-white-dim">Strategic interfaces that drive engagement.</p>
+          </div>
+          <Link to="/work" className="flex items-center gap-2 text-primary hover:text-white transition-colors">
+            View All Projects <ArrowUpRight size={18} />
+          </Link>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {UIUX_PROJECTS.map((project, index) => (
+            <AnimatedSection key={project.id} delay={index * 0.1}>
+              <Link to={`/work/${project.id}`} className="block group cursor-pointer">
+                {/* Image Container */}
+                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] mb-6 border border-white/10">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* Overlay Action */}
+                  <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 bg-[#0A0A0A]/90 backdrop-blur rounded-full flex items-center justify-center text-primary">
+                      <ArrowUpRight size={24} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-white-dim text-sm">{project.category}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    {project.tags.slice(0, 2).map(tag => (
+                      <span key={tag} className="text-xs px-2 py-1 rounded border border-white/10 text-white-dim">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -662,6 +737,9 @@ const UiUxDesignPage: React.FC = () => {
 
       {/* Our Process Section (Dual Track) */}
       <UiUxProcess />
+
+      {/* Selected Work Section */}
+      <UiUxSelectedWork />
 
       {/* Why Flowrax Section */}
       <WhyChooseUs />
