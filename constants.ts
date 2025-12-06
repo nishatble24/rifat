@@ -3,7 +3,7 @@ import { Layers, Zap, PenTool, Layout, Monitor, Smartphone, Twitter, Linkedin, I
 import { NavItem, Service, Project, Testimonial, SocialLink } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Services', href: '/#services' },
+  { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
   { label: 'Pricing', href: '/pricing' },
 ];

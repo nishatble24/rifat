@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { HashRouter, Routes, Route, useParams, Link } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -25,6 +26,7 @@ import ProjectDetailPage from './components/ProjectDetailPage';
 import AboutUs from './components/AboutUs';
 import WebDesignTechStack from './components/WebDesignTechStack';
 import FounderCTA from './components/FounderCTA';
+import ServicesPage from './components/ServicesPage';
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function App() {
             </>
           } />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/work/:id" element={<ProjectDetailPage />} />
           <Route path="/services/ui-ux-design" element={<UiUxDesignPage />} />
