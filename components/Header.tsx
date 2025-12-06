@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Layout, Smartphone, Cpu, Layers, ArrowRight, Palette } from 'lucide-react';
+import { Menu, X, Layout, Smartphone, Cpu, Layers, ArrowRight, Palette, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NAV_ITEMS } from '../constants';
 
@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ bannerOffset = 0 }) => {
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   return (
     <>
@@ -205,9 +206,9 @@ const Header: React.FC<HeaderProps> = ({ bannerOffset = 0 }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] p-4 flex flex-col bg-background/95 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-[60] p-4 flex flex-col bg-background/95 backdrop-blur-xl md:hidden overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-12">
+            <div className="flex justify-between items-center mb-8 shrink-0">
                <span className="text-xl font-bold text-white flex items-center gap-3">
                  <motion.img 
                    src="https://ik.imagekit.io/flowrax/logo-a2.png" 
@@ -229,23 +230,86 @@ const Header: React.FC<HeaderProps> = ({ bannerOffset = 0 }) => {
                </button>
             </div>
             
-            <nav className="flex flex-col gap-6 items-center flex-1 justify-center">
-              {NAV_ITEMS.map((item, i) => (
-                <motion.div 
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.1 }}
-                >
-                  <Link
-                    to={item.href}
-                    className="text-3xl font-medium text-white/90 hover:text-primary tracking-tight"
-                    onClick={() => setIsMobileMenuOpen(false)}
+            <nav className="flex flex-col gap-6 items-center w-full">
+              {NAV_ITEMS.map((item, i) => {
+                if (item.label === 'Services') {
+                  return (
+                    <motion.div 
+                      key={item.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + i * 0.1 }}
+                      className="w-full flex flex-col items-center"
+                    >
+                      <button
+                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                        className="text-3xl font-medium text-white/90 hover:text-primary tracking-tight flex items-center gap-2"
+                      >
+                        Services
+                        <motion.div
+                          animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ChevronDown size={28} />
+                        </motion.div>
+                      </button>
+
+                      <AnimatePresence>
+                        {isMobileServicesOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden w-full max-w-sm mt-4 bg-white/5 rounded-2xl"
+                          >
+                            <div className="flex flex-col py-2">
+                              {SERVICE_ITEMS.map((service, index) => (
+                                <Link
+                                  key={service.title}
+                                  to={service.href}
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                  className="flex items-center gap-4 px-6 py-4 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0"
+                                >
+                                  <div className="text-white/60">
+                                    <service.icon size={20} />
+                                  </div>
+                                  <span className="text-lg text-white/80 font-medium">{service.title}</span>
+                                </Link>
+                              ))}
+                              
+                              {/* Link to Latest Work from megamenu logic */}
+                              <Link 
+                                to="/work"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="flex items-center justify-center gap-2 px-6 py-4 mt-2 text-primary font-bold bg-primary/5 hover:bg-primary/10 transition-colors"
+                              >
+                                View Featured Work <ArrowRight size={16} />
+                              </Link>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <motion.div 
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.1 }}
                   >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      to={item.href}
+                      className="text-3xl font-medium text-white/90 hover:text-primary tracking-tight"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               
               <Link 
                 to="/contact"
@@ -256,7 +320,7 @@ const Header: React.FC<HeaderProps> = ({ bannerOffset = 0 }) => {
               </Link>
             </nav>
             
-            <div className="text-center text-white-dim text-sm pb-8">
+            <div className="text-center text-white-dim text-sm py-8 mt-auto shrink-0">
               &copy; Flowrax Agency
             </div>
           </motion.div>
