@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
     hidden: { y: 20, opacity: 0 },
     visible: { 
       y: 0, 
-      opacity: 1,
+      opacity: 1, 
       transition: { type: "spring", stiffness: 100, damping: 10 }
     }
   };
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[100dvh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-[#02030a]"
+      className="relative min-h-[100dvh] flex flex-col items-center justify-center pt-20 md:pt-32 pb-20 overflow-hidden bg-[#02030a]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -157,9 +157,9 @@ const Hero: React.FC = () => {
           </motion.div>
 
           {/* Heading */}
-          <h1 className="flex flex-col items-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
+          <h1 className="flex flex-col items-center text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
              {/* Line 1 */}
-             <motion.div variants={wordVariants} className="flex flex-wrap justify-center gap-x-3 md:gap-x-5">
+             <motion.div variants={wordVariants} className="flex flex-nowrap justify-center gap-x-2 md:gap-x-5">
                 <span>We</span>
                 <span className="font-serif italic font-medium text-white/90">Design</span>
                 <span>Products</span>
@@ -207,7 +207,7 @@ const Hero: React.FC = () => {
                    {[1,2,3,4,5].map(i => <Star key={i} size={10} fill="currentColor" strokeWidth={0} />)}
                 </div>
                 <span className="text-xs text-white/90 font-medium">
-                  Trusted by <span className="font-bold text-white">50+</span> Founders
+                  Trusted by <span className="font-bold text-white">50+ Founders</span>
                 </span>
              </div>
           </motion.div>
