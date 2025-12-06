@@ -12,6 +12,12 @@ const Hero: React.FC = () => {
   const contentY = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
+  // Video Animation: Scale up as user scrolls
+  // Adjusted for a more fluid zoom-in effect starting smaller
+  const videoScale = useTransform(scrollY, [0, 400], [0.6, 1]);
+  // Adding a slight opacity transition for the video as well to make it pop in
+  const videoOpacity = useTransform(scrollY, [0, 300], [0.8, 1]);
+
   // --- 3D Tilt Logic for Dashboard (Kept as requested for layout structure) ---
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -172,7 +178,7 @@ const Hero: React.FC = () => {
           {/* Description */}
           <motion.p 
             variants={wordVariants}
-            className="text-white-dim text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+            className="text-white-dim text-sm md:text-lg max-w-xl md:max-w-3xl mx-auto mb-10 leading-relaxed font-light"
           >
             Flowrax is a strategic design partner for forward-thinking companies. We blend aesthetics with architecture to build systems that drive growth.
           </motion.p>
@@ -192,13 +198,16 @@ const Hero: React.FC = () => {
                    <img src={src} alt="User" className="w-full h-full object-cover" />
                  </div>
                ))}
+               <div className="relative w-8 h-8 rounded-full border-2 border-[#02030a] bg-white flex items-center justify-center text-[9px] font-bold text-black">
+                 50+
+               </div>
              </div>
              <div className="flex flex-col items-start text-left">
                 <div className="flex text-[#FFB800] gap-0.5">
                    {[1,2,3,4,5].map(i => <Star key={i} size={10} fill="currentColor" strokeWidth={0} />)}
                 </div>
                 <span className="text-xs text-white/90 font-medium">
-                  <span className="font-bold text-white">50+</span> and Trusted by Founders
+                  Trusted by <span className="font-bold text-white">50+</span> Founders
                 </span>
              </div>
           </motion.div>
@@ -230,12 +239,14 @@ const Hero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* 3. Interactive Video Centerpiece (Kept to maintain existing structure below fold) */}
+        {/* 3. Interactive Video Centerpiece (Scalable) */}
         <div className="perspective-[2000px] w-full max-w-6xl flex justify-center pb-8 md:pb-24 px-2 sm:px-0">
           <motion.div
             style={{ 
               rotateX, 
               rotateY,
+              scale: videoScale,
+              opacity: videoOpacity,
               transformStyle: "preserve-3d" 
             }}
             className="w-full relative aspect-video md:aspect-[21/9] bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]"
