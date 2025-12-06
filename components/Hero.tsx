@@ -122,28 +122,28 @@ const Hero: React.FC = () => {
           <div className="flex flex-col items-center gap-2 mb-8">
              {/* Line 1 */}
              <div className="flex flex-wrap justify-center items-baseline gap-x-3 md:gap-x-5 px-2">
-                <motion.span variants={wordVariants} className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white">
+                <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
                   We
                 </motion.span>
-                <motion.span variants={wordVariants} className="text-5xl sm:text-7xl md:text-8xl font-serif italic font-medium tracking-tight text-white-dim">
+                <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-serif italic font-medium tracking-tight text-white-dim">
                   Design
                 </motion.span>
-                <motion.span variants={wordVariants} className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white">
+                <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
                   Products
                 </motion.span>
              </div>
              
              {/* Line 2 */}
              <div className="flex flex-wrap justify-center items-baseline gap-x-3 md:gap-x-5 px-2">
-                 <motion.span variants={wordVariants} className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white">
+                 <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
                    That
                  </motion.span>
-                 <motion.span variants={wordVariants} className="text-5xl sm:text-7xl md:text-8xl font-serif italic font-medium tracking-tight text-white-dim">
+                 <motion.span variants={wordVariants} className="text-4xl sm:text-6xl md:text-7xl font-serif italic font-medium tracking-tight text-white-dim">
                    Drive
                  </motion.span>
                  <motion.span 
                    variants={wordVariants}
-                   className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-primary-glow drop-shadow-[0_0_30px_rgba(16,185,129,0.3)]"
+                   className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-primary-glow drop-shadow-[0_0_30px_rgba(16,185,129,0.3)]"
                  >
                    Results.
                  </motion.span>
@@ -153,7 +153,7 @@ const Hero: React.FC = () => {
           {/* Description Text */}
           <motion.p 
             variants={wordVariants}
-            className="text-white-dim text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed text-center font-light"
+            className="text-white-dim text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed text-center font-light"
           >
             Flowrax is a strategic design partner for forward-thinking companies. We blend aesthetics with architecture to build systems that drive growth.
           </motion.p>
@@ -300,3 +300,4 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+    
