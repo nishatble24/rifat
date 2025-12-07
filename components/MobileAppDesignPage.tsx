@@ -37,19 +37,19 @@ const MobileAppHero: React.FC = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[60vh] md:h-[75vh] flex items-center bg-[#050505] overflow-hidden pt-24 pb-12 md:py-0"
+      className="relative min-h-[100dvh] flex items-center bg-[#050505] overflow-hidden pt-32 pb-20 lg:py-0"
     >
       {/* Subtle Background */}
       <div className="absolute inset-0 bg-grid-white opacity-[0.03] pointer-events-none" />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
           {/* LEFT: Content */}
-          <div className="w-full md:w-1/2 text-left">
+          <div className="w-full lg:w-1/2 text-left">
             <AnimatedSection>
-              <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+              <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-primary/20 bg-primary/10 px-3 py-1 rounded-full">
                 <Smartphone size={14} /> Mobile App Design
               </div>
               
@@ -66,7 +66,7 @@ const MobileAppHero: React.FC = () => {
                 href="https://cal.com/flowrax/project-discussion" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-white/90 transition-all active:scale-95"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-white/90 transition-all active:scale-95 shadow-[0_0_30px_-5px_rgba(255,255,255,0.3)]"
               >
                 Discuss Your App <ArrowRight size={18} />
               </a>
@@ -74,13 +74,13 @@ const MobileAppHero: React.FC = () => {
           </div>
 
           {/* RIGHT: Interactive Visual */}
-          <div className="w-full md:w-1/2 relative h-[400px] md:h-[500px] flex items-center justify-center perspective-[1000px]">
+          <div className="w-full lg:w-1/2 relative flex items-center justify-center perspective-[1000px] mt-8 lg:mt-0">
             <motion.div
               style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
               initial={{ opacity: 0, x: 50, rotateY: 15 }}
               animate={{ opacity: 1, x: 0, rotateY: -10 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
+              className="relative transform scale-[0.8] sm:scale-90 md:scale-100 origin-center"
             >
               {/* Phone Frame */}
               <div className="w-[280px] h-[560px] bg-black rounded-[3rem] border-[8px] border-[#1a1a1a] shadow-2xl relative overflow-hidden ring-1 ring-white/10">
