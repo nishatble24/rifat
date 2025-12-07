@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Figma, PenTool, Palette, Layers as LayersIcon, Layout, Box, Code, Triangle, ShoppingBag, Globe, Wind, Zap, Command, BarChart2, Terminal, Database, Hexagon } from 'lucide-react';
@@ -51,12 +52,12 @@ const WebDesignTechStack: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section className="py-12 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
        <div className="absolute inset-0 bg-grid-white opacity-[0.03] pointer-events-none" />
        
        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
           
-          <AnimatedSection className="text-center mb-16 md:mb-24 relative z-20">
+          <AnimatedSection className="text-center mb-8 md:mb-24 relative z-20">
              <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">Our Toolkit</span>
              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Powered by Industry Standards</h2>
              <p className="text-white-dim text-lg">Always learning, always evolving.</p>
@@ -64,7 +65,7 @@ const WebDesignTechStack: React.FC = () => {
 
           {/* Orbit System Container */}
           <div 
-             className="relative w-[800px] h-[800px] flex items-center justify-center transition-transform duration-500 origin-center scale-[0.4] sm:scale-50 md:scale-75 lg:scale-100"
+             className="relative w-[800px] h-[800px] flex items-center justify-center transition-transform duration-500 origin-center scale-[0.4] sm:scale-50 md:scale-75 lg:scale-100 -my-[240px] sm:-my-[200px] md:-my-[100px] lg:my-0"
              onMouseEnter={() => setIsHovered(true)}
              onMouseLeave={() => setIsHovered(false)}
           >
