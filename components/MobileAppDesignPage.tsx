@@ -1,12 +1,11 @@
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Smartphone, MessageSquare, Bell, Star, Zap, Layers, CheckCircle2, Apple, Play, GitMerge, MousePointerClick, Box, LayoutGrid } from 'lucide-react';
+import { ArrowRight, Smartphone, MessageSquare, Bell, Star, Zap, Layers, CheckCircle2, Apple, Play, GitMerge, MousePointerClick, Box, LayoutGrid, Landmark, HeartPulse, ShoppingBag, Database, GraduationCap, Building2, Utensils, Plane, ChevronRight, ChevronLeft, MapPin, Search, Calendar, PieChart, CreditCard, Activity, User, Home, BookOpen, Quote, Sparkles, TrendingUp, Globe, Shield } from 'lucide-react';
 import AnimatedSection from './ui/AnimatedSection';
 import WhyChooseUs from './WhyChooseUs';
 import WebDesignTechStack from './WebDesignTechStack';
-import WebDesignTestimonials from './WebDesignPage'; // Reusing for now, can be separate if needed
 
 // --- COMPACT HERO SECTION ---
 const MobileAppHero: React.FC = () => {
@@ -175,8 +174,6 @@ const MobileAppHero: React.FC = () => {
     </section>
   );
 };
-
-// --- EXPERTISE SECTION ---
 
 interface DeviceMockupProps {
   type: 'iphone' | 'android';

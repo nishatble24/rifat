@@ -7,7 +7,7 @@ import AnimatedSection from './ui/AnimatedSection';
 // --- VISUAL COMPONENTS ---
 
 const StrategyVisual = () => (
-  <div className="relative md:absolute right-0 top-0 w-full md:w-1/2 h-64 md:h-full min-h-[200px] overflow-hidden flex items-center justify-center p-4 mt-6 md:mt-0">
+  <div className="relative md:absolute right-0 top-0 w-full md:w-1/2 h-48 md:h-full min-h-[200px] overflow-hidden flex items-center justify-center p-4 mt-6 md:mt-0">
     <div className="relative w-full max-w-[300px] aspect-video">
        {/* Connecting Lines */}
        <svg className="absolute inset-0 w-full h-full overflow-visible">
@@ -184,10 +184,10 @@ const Workflow: React.FC = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Card 1: Strategy (Span 2) */}
-          <AnimatedSection className="md:col-span-2 rounded-3xl bg-[#0A0A0A] border border-white/10 p-8 flex flex-col justify-center relative overflow-hidden group hover:border-primary/30 transition-colors min-h-[300px]">
+          <AnimatedSection className="md:col-span-2 rounded-3xl bg-[#0A0A0A] border border-white/10 p-8 flex flex-col justify-center relative overflow-hidden group hover:border-primary/30 transition-colors min-h-[250px]">
             <div className="relative z-10 max-w-md">
               <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500 mb-6 border border-purple-500/20">
                  <GitBranch size={24} />
@@ -212,17 +212,17 @@ const Workflow: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="md:col-span-1 rounded-3xl bg-[#0A0A0A] border border-white/10 p-6 relative overflow-hidden group hover:border-primary/30 transition-all duration-300 flex flex-col"
+            className="md:col-span-1 rounded-3xl bg-[#0A0A0A] border border-white/10 p-5 relative overflow-hidden group hover:border-primary/30 transition-all duration-300 flex flex-col"
           >
              <div className="relative z-10 flex flex-col h-full">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 mb-4 group-hover:scale-110 transition-transform">
                   <Smartphone size={24} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">2. Visual Design</h3>
-                <p className="text-white-dim text-sm mb-6">Pixel-perfect designs ready for any screen size.</p>
+                <p className="text-white-dim text-sm mb-4">Pixel-perfect designs ready for any screen size.</p>
                 
                 {/* Phone Mockup - Shortened/Clipped */}
-                <div className="relative w-full mt-auto h-40 overflow-hidden flex justify-center">
+                <div className="relative w-full mt-auto h-28 overflow-hidden flex justify-center">
                   <div className="w-full max-w-[200px] bg-black border-[4px] border-[#1a1a1a] rounded-[2rem] overflow-hidden relative shadow-2xl ring-1 ring-white/10 transform translate-y-4">
                      {/* Notch */}
                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-black rounded-full z-20" />

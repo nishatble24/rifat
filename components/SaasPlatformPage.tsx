@@ -1,8 +1,8 @@
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useInView, AnimatePresence, useScroll } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Layers, BarChart3, Users, Settings, Bell, Search, Activity, CheckCircle2, MoreHorizontal, Filter, Download, ChevronDown, Layout, Database, Lock, MousePointer2, CreditCard, PieChart, ArrowUpRight, ArrowDownRight, ClipboardList, GitBranch, LayoutDashboard, Component, Rocket, Timer, Cpu, Target, Radar, Code, Zap } from 'lucide-react';
+import { ArrowRight, Layers, BarChart3, Users, Settings, Bell, Search, Activity, CheckCircle2, MoreHorizontal, Filter, Download, ChevronDown, Layout, Database, Lock, MousePointer2, CreditCard, PieChart, ArrowUpRight, ArrowDownRight, ClipboardList, GitBranch, LayoutDashboard, Component, Rocket, Timer, Cpu, Target, Radar, Code, Zap, Landmark, HeartPulse, ShoppingBag, GraduationCap, Building2, Utensils, Plane, GripHorizontal, Box } from 'lucide-react';
 import AnimatedSection from './ui/AnimatedSection';
 import WhyChooseUs from './WhyChooseUs';
 import WebDesignTechStack from './WebDesignTechStack';
@@ -685,9 +685,6 @@ const SaasExpertise: React.FC = () => {
           >
              
              {/* --- DASHBOARD MOCKUP UI --- */}
-             {/* NOTE: We separate the UI into an inner container with overflow-hidden to clip content, 
-                 while keeping the main container free so tooltips can extend outside boundaries. */}
-             
              <div className="absolute inset-0 bg-[#0A0A0A] rounded-2xl border border-white/10 overflow-hidden flex flex-col">
                  
                  {/* Header */}
@@ -715,7 +712,6 @@ const SaasExpertise: React.FC = () => {
                     >
                        <div className="group/icon relative">
                           <div className="p-3 rounded-xl bg-blue-600/10 text-blue-500"><Layout size={20} /></div>
-                          <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/icon:opacity-100 transition-opacity pointer-events-none">Dashboard</div>
                        </div>
                        <div className="group/icon relative">
                           <div className="p-3 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors"><Users size={20} /></div>
@@ -735,9 +731,8 @@ const SaasExpertise: React.FC = () => {
                     {/* Main Content */}
                     <div className="flex-1 p-6 md:p-10 bg-[#080808] relative overflow-hidden flex flex-col">
                        
-                       {/* KPI Grid - Realistic Data */}
+                       {/* KPI Grid */}
                        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 transition-all duration-500 ${activeId ? 'opacity-30 blur-[1px]' : 'opacity-100'}`}>
-                          
                           {/* KPI 1 */}
                           <div className="bg-[#111] border border-white/5 p-5 rounded-xl flex flex-col justify-between h-32 relative overflow-hidden">
                              <div className="absolute top-0 right-0 p-3 opacity-20"><Users size={40} /></div>
@@ -748,11 +743,9 @@ const SaasExpertise: React.FC = () => {
                                    <span className="text-xs text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
                                       <ArrowUpRight size={10} /> 12%
                                    </span>
-                                   <span className="text-[10px] text-white/30">vs last month</span>
                                 </div>
                              </div>
                           </div>
-
                           {/* KPI 2 */}
                           <div className="bg-[#111] border border-white/5 p-5 rounded-xl flex flex-col justify-between h-32 relative overflow-hidden">
                              <div className="absolute top-0 right-0 p-3 opacity-20"><PieChart size={40} /></div>
@@ -763,11 +756,9 @@ const SaasExpertise: React.FC = () => {
                                    <span className="text-xs text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
                                       <ArrowDownRight size={10} /> 0.4%
                                    </span>
-                                   <span className="text-[10px] text-white/30">improvement</span>
                                 </div>
                              </div>
                           </div>
-
                           {/* KPI 3 */}
                           <div className="bg-[#111] border border-white/5 p-5 rounded-xl flex flex-col justify-between h-32 relative overflow-hidden">
                              <div className="absolute top-0 right-0 p-3 opacity-20"><CreditCard size={40} /></div>
@@ -778,7 +769,6 @@ const SaasExpertise: React.FC = () => {
                                    <span className="text-xs text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
                                       <ArrowUpRight size={10} /> 8.4%
                                    </span>
-                                   <span className="text-[10px] text-white/30">growth</span>
                                 </div>
                              </div>
                           </div>
@@ -793,34 +783,14 @@ const SaasExpertise: React.FC = () => {
                                 <h4 className="text-sm font-bold text-white">Revenue Overview</h4>
                                 <div className="text-[10px] text-white/40">Jan 01 - Dec 31, 2024</div>
                              </div>
-                             <div className="flex gap-2">
-                                <div className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] text-white/60">
-                                   <div className="w-2 h-2 rounded-full bg-blue-500" /> Current
-                                </div>
-                                <div className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded text-[10px] text-white/60">
-                                   <div className="w-2 h-2 rounded-full bg-white/20" /> Previous
-                                </div>
-                             </div>
                           </div>
                           
                           <div className="absolute inset-x-6 bottom-6 top-20 flex items-end gap-2 md:gap-4">
                              {[30, 50, 45, 70, 60, 85, 80, 55, 65, 90, 75, 50, 60, 40, 70].map((h, i) => (
                                 <div key={i} className="flex-1 flex flex-col justify-end gap-1 h-full group/bar relative">
-                                   <div className="w-full bg-blue-600 rounded-t-sm transition-all duration-1000 relative hover:bg-blue-500" style={{ height: `${h}%` }}>
-                                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[9px] font-bold px-1.5 py-0.5 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity">
-                                         ${h}k
-                                      </div>
-                                   </div>
+                                   <div className="w-full bg-blue-600 rounded-t-sm transition-all duration-1000 relative hover:bg-blue-500" style={{ height: `${h}%` }} />
                                 </div>
                              ))}
-                          </div>
-                          
-                          {/* Y-Axis Lines (Decorative) */}
-                          <div className="absolute inset-x-6 top-20 bottom-6 pointer-events-none flex flex-col justify-between">
-                             <div className="w-full h-px bg-white/5" />
-                             <div className="w-full h-px bg-white/5" />
-                             <div className="w-full h-px bg-white/5" />
-                             <div className="w-full h-px bg-white/5" />
                           </div>
                        </motion.div>
 
@@ -838,7 +808,6 @@ const SaasExpertise: React.FC = () => {
                              { name: "Acme Corp", status: "Active", amount: "$12,500", date: "Oct 24" },
                              { name: "Stark Ind", status: "Pending", amount: "$4,200", date: "Oct 22" },
                              { name: "Wayne Ent", status: "Active", amount: "$8,900", date: "Oct 21" },
-                             { name: "Cyberdyne", status: "Cancelled", amount: "$1,100", date: "Oct 19" },
                           ].map((row, i) => (
                              <div key={i} className="h-12 border-b border-white/5 flex items-center px-6 gap-4 last:border-0 hover:bg-white/[0.02] transition-colors group/row">
                                 <div className="w-1/3 flex items-center gap-3">
@@ -846,11 +815,7 @@ const SaasExpertise: React.FC = () => {
                                    <span className="text-xs text-white/80 font-medium">{row.name}</span>
                                 </div>
                                 <div className="w-1/6">
-                                   <span className={`text-[10px] px-1.5 py-0.5 rounded border ${
-                                      row.status === 'Active' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
-                                      row.status === 'Pending' ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20' :
-                                      'bg-red-500/10 text-red-500 border-red-500/20'
-                                   }`}>
+                                   <span className={`text-[10px] px-1.5 py-0.5 rounded border ${row.status === 'Active' ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'}`}>
                                       {row.status}
                                    </span>
                                 </div>
@@ -864,7 +829,7 @@ const SaasExpertise: React.FC = () => {
                  </div>
              </div>
 
-             {/* --- HOTSPOTS OVERLAY (Outside overflow-hidden) --- */}
+             {/* --- HOTSPOTS OVERLAY --- */}
              <div className="absolute inset-0 pointer-events-none md:pointer-events-auto">
                 {HOTSPOTS.map((spot) => {
                   const isActive = activeId === spot.id;
@@ -881,13 +846,9 @@ const SaasExpertise: React.FC = () => {
                          className="relative group focus:outline-none"
                          aria-label={`View ${spot.title} details`}
                        >
-                          {/* Pulse Effect */}
                           <span className={`absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75 animate-ping ${isActive ? 'paused' : 'running'}`} />
-                          
-                          {/* Dot */}
                           <div className={`relative w-4 h-4 md:w-6 md:h-6 rounded-full border-2 transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.5)] ${isActive ? 'bg-white border-blue-500 scale-125' : 'bg-blue-500 border-white hover:scale-110'}`} />
                           
-                          {/* Connecting Line (Optional, for style) */}
                           <AnimatePresence>
                             {isActive && (
                                <motion.div 
@@ -900,7 +861,6 @@ const SaasExpertise: React.FC = () => {
                           </AnimatePresence>
                        </button>
 
-                       {/* Detail Card (Popover) */}
                        <AnimatePresence>
                           {isActive && (
                             <motion.div
@@ -933,12 +893,9 @@ const SaasExpertise: React.FC = () => {
                 })}
              </div>
 
-             {/* Overlay Gradient for Mobile Readability */}
-             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent md:hidden pointer-events-none" />
-
           </motion.div>
 
-          {/* Mobile List View (Alternative to hotspots on small screens) */}
+          {/* Mobile List View */}
           <div className="md:hidden mt-8 grid grid-cols-1 gap-4">
              {HOTSPOTS.map((spot) => (
                 <div key={spot.id} className="bg-[#111] border border-white/10 rounded-xl p-5 flex gap-4">
@@ -973,12 +930,264 @@ const SaasExpertise: React.FC = () => {
   );
 };
 
+// --- INDUSTRIES FAN SECTION (NEW) ---
+
+const INDUSTRIES_FAN_DATA = [
+  {
+    id: 1,
+    name: "Fintech",
+    icon: Landmark,
+    count: "40+",
+    color: "#60A5FA",
+    gradient: "from-blue-600/80 to-indigo-900/80",
+    desc: "High-frequency trading terminals & secure banking dashboards.",
+    preview: ["#1E3A8A", "#1E40AF"]
+  },
+  {
+    id: 2,
+    name: "Healthcare",
+    icon: HeartPulse,
+    count: "25+",
+    color: "#2DD4BF",
+    gradient: "from-teal-600/80 to-emerald-900/80",
+    desc: "Telemedicine platforms & patient data management systems.",
+    preview: ["#134E4A", "#115E59"]
+  },
+  {
+    id: 3,
+    name: "E-commerce",
+    icon: ShoppingBag,
+    count: "55+",
+    color: "#F472B6",
+    gradient: "from-pink-600/80 to-rose-900/80",
+    desc: "Inventory management & multi-channel retail dashboards.",
+    preview: ["#831843", "#9D174D"]
+  },
+  {
+    id: 4,
+    name: "SaaS",
+    icon: Database,
+    count: "60+",
+    color: "#818CF8",
+    gradient: "from-indigo-600/80 to-violet-900/80",
+    desc: "Project management tools & enterprise resource planning.",
+    preview: ["#312E81", "#3730A3"]
+  },
+  {
+    id: 5,
+    name: "Education",
+    icon: GraduationCap,
+    count: "30+",
+    color: "#34D399",
+    gradient: "from-emerald-600/80 to-green-900/80",
+    desc: "Learning management systems (LMS) & student analytics.",
+    preview: ["#064E3B", "#065F46"]
+  },
+  {
+    id: 6,
+    name: "Real Estate",
+    icon: Building2,
+    count: "20+",
+    color: "#FB923C",
+    gradient: "from-orange-600/80 to-amber-900/80",
+    desc: "Property listing portals & agent CRM platforms.",
+    preview: ["#7C2D12", "#9A3412"]
+  },
+  {
+    id: 7,
+    name: "Food Tech",
+    icon: Utensils,
+    count: "35+",
+    color: "#F87171",
+    gradient: "from-red-600/80 to-orange-900/80",
+    desc: "Restaurant POS systems & delivery fleet management.",
+    preview: ["#7F1D1D", "#991B1B"]
+  },
+  {
+    id: 8,
+    name: "Travel",
+    icon: Plane,
+    count: "25+",
+    color: "#38BDF8",
+    gradient: "from-sky-600/80 to-blue-900/80",
+    desc: "Booking engines & itinerary management tools.",
+    preview: ["#0C4A6E", "#075985"]
+  }
+];
+
+const IndustriesFanSection: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Smooth scroll progress
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
+
+  return (
+    <section ref={containerRef} className="relative h-[400vh] bg-[#020202]">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
+        
+        {/* Ambient Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#111] via-black to-black opacity-80" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+        
+        {/* Header Text - Fades out on scroll */}
+        <motion.div 
+          style={{ opacity: useTransform(smoothProgress, [0, 0.2], [1, 0]), y: useTransform(smoothProgress, [0, 0.2], [0, -50]) }}
+          className="absolute top-24 z-20 text-center px-4"
+        >
+           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Industries We Serve</h2>
+           <p className="text-white-dim text-lg">Scroll to explore our domain expertise</p>
+           <div className="mt-8 animate-bounce text-white/20"><ChevronDown /></div>
+        </motion.div>
+
+        {/* Deck of Cards Container */}
+        <div className="relative w-full max-w-[1200px] h-[600px] flex items-center justify-center perspective-[2000px] hidden lg:flex">
+           {INDUSTRIES_FAN_DATA.map((industry, index) => {
+              // Calculate transforms based on scroll progress
+              const totalCards = INDUSTRIES_FAN_DATA.length;
+              const centerIndex = (totalCards - 1) / 2;
+              const relativeIndex = index - centerIndex;
+              
+              // Fan out logic
+              // 0 -> Stacked, 1 -> Fanned
+              const fanProgress = useTransform(smoothProgress, [0.1, 0.7], [0, 1]);
+              
+              // Rotation
+              const baseRotation = relativeIndex * 10; // Max spread ~40deg
+              const rotation = useTransform(fanProgress, [0, 1], [relativeIndex * 2, baseRotation]);
+              
+              // X Translation (Spread horizontally)
+              const baseX = relativeIndex * 140; // Spacing
+              const x = useTransform(fanProgress, [0, 1], [relativeIndex * 5, baseX]);
+              
+              // Y Translation (Arc effect - Center higher)
+              const baseY = Math.abs(relativeIndex) * 20; 
+              const y = useTransform(fanProgress, [0, 1], [relativeIndex * 2, baseY]);
+
+              // Z-Index handling
+              const isHovered = hoveredIndex === index;
+              const isAnyHovered = hoveredIndex !== null;
+
+              return (
+                 <motion.div
+                    key={industry.id}
+                    style={{ 
+                       rotate: rotation, 
+                       x, 
+                       y: isHovered ? -100 : y, // Lift on hover
+                       scale: isHovered ? 1.1 : 1,
+                       zIndex: isHovered ? 50 : index,
+                       filter: isAnyHovered && !isHovered ? "blur(2px) brightness(0.5)" : "blur(0px) brightness(1)"
+                    }}
+                    className="absolute w-[300px] md:w-[360px] h-[480px] md:h-[520px] origin-bottom cursor-pointer transition-all duration-300"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                 >
+                    {/* Card Body */}
+                    <div className="relative w-full h-full rounded-[24px] overflow-hidden border border-white/10 bg-[#0A0A0A] shadow-2xl group">
+                       
+                       {/* Background Gradient/Image */}
+                       <div className={`absolute inset-0 bg-gradient-to-br ${industry.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
+                       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+                       
+                       {/* Top Content */}
+                       <div className="relative z-10 p-6 flex justify-between items-start">
+                          <div className="px-3 py-1 rounded-full bg-black/40 border border-white/10 backdrop-blur-md text-xs font-bold text-white uppercase tracking-wider">
+                             {industry.count} Projects
+                          </div>
+                          <div 
+                            className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-lg group-hover:scale-110 transition-transform"
+                            style={{ color: industry.color }}
+                          >
+                             <industry.icon size={24} />
+                          </div>
+                       </div>
+
+                       {/* Middle/Visual Content */}
+                       <div className="absolute inset-0 flex flex-col justify-center items-center opacity-60 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none">
+                          <industry.icon size={180} strokeWidth={0.5} className="text-white/20" />
+                       </div>
+
+                       {/* Bottom Content */}
+                       <div className="absolute bottom-0 left-0 w-full p-6 z-10 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-20">
+                          <h3 className="text-3xl font-bold text-white mb-2">{industry.name}</h3>
+                          
+                          {/* Expanded Info (Visible on Hover) */}
+                          <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300">
+                             <motion.p 
+                               initial={{ opacity: 0 }}
+                               animate={{ opacity: isHovered ? 1 : 0 }}
+                               className="text-sm text-white-dim mb-4 leading-relaxed"
+                             >
+                                {industry.desc}
+                             </motion.p>
+                             
+                             <div className="flex gap-2 mb-4">
+                                {industry.preview.map((color, i) => (
+                                   <div key={i} className="w-8 h-6 rounded bg-white/20" style={{ backgroundColor: color }} />
+                                ))}
+                             </div>
+
+                             <motion.button 
+                               initial={{ y: 20, opacity: 0 }}
+                               animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+                               className="w-full py-3 bg-white text-black font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition-colors"
+                             >
+                                View Projects <ArrowRight size={16} />
+                             </motion.button>
+                          </div>
+                          
+                          {/* Default State: Simple Indicator */}
+                          <div className="group-hover:hidden h-1 w-12 bg-white/20 rounded-full mt-2" />
+                       </div>
+                    </div>
+                 </motion.div>
+              )
+           })}
+        </div>
+
+        {/* Mobile Fallback: Horizontal Scroll */}
+        <div className="lg:hidden absolute inset-0 flex items-center px-6 overflow-x-auto snap-x snap-mandatory z-30 pointer-events-auto bg-[#020202]">
+           <div className="flex gap-4 w-full">
+              {INDUSTRIES_FAN_DATA.map((industry) => (
+                 <div key={industry.id} className="min-w-[85vw] snap-center h-[60vh] relative rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A]">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${industry.gradient} opacity-20`} />
+                    <div className="absolute inset-0 flex flex-col justify-between p-6">
+                       <div className="flex justify-between">
+                          <span className="bg-black/40 px-3 py-1 rounded-full text-xs text-white font-bold">{industry.count}</span>
+                          <industry.icon size={24} color={industry.color} />
+                       </div>
+                       <div className="flex flex-col justify-center flex-1 items-center opacity-30">
+                          <industry.icon size={120} strokeWidth={0.5} />
+                       </div>
+                       <div>
+                          <h3 className="text-3xl font-bold text-white mb-2">{industry.name}</h3>
+                          <p className="text-sm text-white-dim mb-4">{industry.desc}</p>
+                          <Link to="/work" className="block w-full py-3 bg-white/10 text-white text-center rounded-xl font-bold">View Projects</Link>
+                       </div>
+                    </div>
+                 </div>
+              ))}
+           </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
 const SaasPlatformPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050505] selection:bg-blue-500 selection:text-white">
       <SaasHero />
       <SaasProcess />
       <SaasExpertise />
+      <IndustriesFanSection />
       <WhyChooseUs />
       <WebDesignTechStack />
       <ClientReviews />

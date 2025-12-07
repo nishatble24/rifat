@@ -1,9 +1,8 @@
 
-// ... existing imports ...
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, MousePointer2, Palette, Layers, Search, GitBranch, CheckCircle2, Eye, FileCode, Monitor, Layout as LayoutIcon, User, Sparkles, Rocket, FileText, BrainCircuit, Component, MessageCircle, ArrowUpRight, Landmark, HeartPulse, ShoppingBag, Database, GraduationCap, Building2, Utensils, Plane, BookOpen, Globe, Map as MapIcon, Activity, Cross, Command, Zap, Triangle } from 'lucide-react';
 import WhyChooseUs from './WhyChooseUs';
 import AnimatedSection from './ui/AnimatedSection';
 import { PROJECTS } from '../constants';
@@ -187,216 +186,221 @@ const UiUxExpertise: React.FC = () => {
   );
 };
 
-// --- PROCESS SECTION ---
+// --- INDUSTRIES FLIP CARDS SECTION ---
 
-const RESEARCH_STEPS = [
-  { id: '01', title: 'Discover', desc: 'Stakeholder interviews, user research, and competitive analysis.', icon: Search },
-  { id: '02', title: 'Define', desc: 'User personas, journey maps, and problem statements.', icon: User },
-  { id: '03', title: 'Validate', desc: 'Usability testing and user feedback loops to verify decisions.', icon: CheckCircle2 }
+const INDUSTRIES_FLIP_DATA = [
+  { 
+    id: 1, 
+    name: "Fintech", 
+    gradient: "from-[#6C3CE9] to-[#3B82F6]", 
+    shadow: "shadow-[#6C3CE9]/25",
+    icon: Landmark, 
+    count: "40+", 
+    desc: "Secure, compliant, and user-friendly financial platforms built for trust.", 
+    clients: [LayoutIcon, Triangle, CheckCircle2] 
+  },
+  { 
+    id: 2, 
+    name: "Healthcare", 
+    gradient: "from-[#0D9488] to-[#06B6D4]", 
+    shadow: "shadow-[#0D9488]/25",
+    icon: HeartPulse, 
+    count: "25+", 
+    desc: "HIPAA-compliant telemedicine and patient management systems.", 
+    clients: [Activity, HeartPulse, Cross] 
+  },
+  { 
+    id: 3, 
+    name: "E-commerce", 
+    gradient: "from-[#F97316] to-[#EC4899]", 
+    shadow: "shadow-[#F97316]/25",
+    icon: ShoppingBag, 
+    count: "55+", 
+    desc: "High-conversion storefronts and frictionless checkout flows.", 
+    clients: [ShoppingBag, Sparkles, Zap] 
+  },
+  { 
+    id: 4, 
+    name: "SaaS", 
+    gradient: "from-[#3B82F6] to-[#6366F1]", 
+    shadow: "shadow-[#3B82F6]/25",
+    icon: Database, 
+    count: "60+", 
+    desc: "Complex data dashboards simplified for daily productivity.", 
+    clients: [Database, Layers, Command] 
+  },
+  { 
+    id: 5, 
+    name: "Education", 
+    gradient: "from-[#10B981] to-[#14B8A6]", 
+    shadow: "shadow-[#10B981]/25",
+    icon: GraduationCap, 
+    count: "30+", 
+    desc: "LMS and learning platforms that engage and retain students.", 
+    clients: [GraduationCap, BookOpen, User] 
+  },
+  { 
+    id: 6, 
+    name: "Real Estate", 
+    gradient: "from-[#F59E0B] to-[#F97316]", 
+    shadow: "shadow-[#F59E0B]/25",
+    icon: Building2, 
+    count: "20+", 
+    desc: "Property portals with immersive map-based viewing experiences.", 
+    clients: [Building2, MapIcon, Search] 
+  },
+  { 
+    id: 7, 
+    name: "Food Tech", 
+    gradient: "from-[#EF4444] to-[#F97316]", 
+    shadow: "shadow-[#EF4444]/25",
+    icon: Utensils, 
+    count: "35+", 
+    desc: "Delivery apps and POS systems for modern dining experiences.", 
+    clients: [Utensils, Sparkles, HeartPulse] 
+  },
+  { 
+    id: 8, 
+    name: "Travel", 
+    gradient: "from-[#06B6D4] to-[#3B82F6]", 
+    shadow: "shadow-[#06B6D4]/25",
+    icon: Plane, 
+    count: "25+", 
+    desc: "Booking engines that inspire wanderlust and simplify planning.", 
+    clients: [Plane, Globe, MapIcon] 
+  },
 ];
 
-const DESIGN_STEPS = [
-  { id: '01', title: 'Structure', desc: 'Information architecture and wireframes that organize content.', icon: BrainCircuit },
-  { id: '02', title: 'Craft', desc: 'Visual design, component creation, and interaction details.', icon: Palette },
-  { id: '03', title: 'Refine', desc: 'Iteration, polish, and pixel-perfect preparation for build.', icon: Sparkles }
-];
-
-const UiUxProcess: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-
-  const pathLength = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
+const FlipCard = ({ data, index }: { data: any, index: number }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  
+  // Random float duration for "different timing each"
+  const floatDuration = 4 + Math.random() * 2; 
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 bg-[#050505] relative border-t border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* Header */}
-        <AnimatedSection className="text-center mb-16 md:mb-24">
-          <span className="text-primary text-xs font-bold uppercase tracking-widest mb-4 block">How We Work</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Two Disciplines. One Process.</h2>
-          <p className="text-white-dim text-lg">Research informs design. Design validates research.</p>
-        </AnimatedSection>
-
-        {/* --- DESKTOP DUAL TRACK --- */}
-        <div className="hidden lg:block relative h-[1200px] w-full">
+    <div 
+      className="relative w-full aspect-[4/5] md:aspect-square perspective-[1000px] group cursor-pointer"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{ y: isFlipped ? 0 : [0, -10, 0] }}
+        transition={{ duration: floatDuration, repeat: Infinity, ease: "easeInOut" }}
+        className="w-full h-full relative transition-transform duration-700"
+        style={{ transformStyle: 'preserve-3d', transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+      >
+        {/* FRONT SIDE */}
+        <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${data.gradient} p-1 overflow-hidden shadow-xl ${data.shadow}`} style={{ backfaceVisibility: 'hidden' }}>
+           <div className="absolute inset-0 bg-black/10" /> {/* Slight tint */}
            
-           {/* SVG PATHS */}
-           <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none">
-              <defs>
-                 <linearGradient id="researchGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#A855F7" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#A855F7" stopOpacity="1" />
-                 </linearGradient>
-                 <linearGradient id="designGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#10B981" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#10B981" stopOpacity="1" />
-                 </linearGradient>
-              </defs>
+           {/* Grain Overlay */}
+           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay" />
+           
+           {/* Particles */}
+           <div className="absolute inset-0 overflow-hidden">
+              {[...Array(5)].map((_, i) => (
+                 <motion.div
+                   key={i}
+                   className="absolute bottom-0 w-1 h-1 bg-white/40 rounded-full"
+                   style={{ left: `${Math.random() * 100}%` }}
+                   animate={{ y: [0, -300], opacity: [0, 1, 0] }}
+                   transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2, ease: "linear" }}
+                 />
+              ))}
+           </div>
+
+           <div className="relative h-full w-full bg-white/5 backdrop-blur-[2px] rounded-[22px] p-6 flex flex-col justify-between border border-white/20">
               
-              {/* Left Track (Research) - Purple */}
-              <motion.path 
-                 d="M 250 0 C 250 300, 350 400, 450 600 C 550 800, 640 900, 640 1100"
-                 fill="none"
-                 stroke="url(#researchGradient)"
-                 strokeWidth="3"
-                 strokeDasharray="10 10"
-                 style={{ pathLength }}
-              />
-
-              {/* Right Track (Design) - Green */}
-              <motion.path 
-                 d="M 1030 0 C 1030 300, 930 400, 830 600 C 730 800, 640 900, 640 1100"
-                 fill="none"
-                 stroke="url(#designGradient)"
-                 strokeWidth="3"
-                 style={{ pathLength }}
-              />
-
-              {/* Cross Connections */}
-              <motion.line x1="250" y1="200" x2="1030" y2="200" stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
-              <motion.line x1="380" y1="500" x2="900" y2="500" stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
-              <motion.line x1="450" y1="800" x2="830" y2="800" stroke="white" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
-           </svg>
-
-           {/* --- RESEARCH NODES (LEFT) --- */}
-           {RESEARCH_STEPS.map((step, i) => (
-              <motion.div 
-                 key={`res-${i}`}
-                 className="absolute"
-                 style={{ 
-                    top: `${15 + i * 30}%`, 
-                    left: i === 0 ? '250px' : i === 1 ? '350px' : '450px',
-                    x: '-50%' 
-                 }}
-                 initial={{ opacity: 0, x: -50 }}
-                 whileInView={{ opacity: 1, x: '-50%' }}
-                 viewport={{ margin: "-100px" }}
-                 transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                 <div className="flex items-center gap-6 flex-row-reverse text-right w-[400px]">
-                    <div className="relative">
-                       <div className="w-12 h-12 rounded-full bg-black border-2 border-purple-500 flex items-center justify-center text-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.4)] z-10 relative">
-                          {React.createElement(step.icon, { size: 20 })}
-                       </div>
-                       <div className={`absolute text-xs font-mono text-purple-500 font-bold tracking-widest bg-black px-2 py-1 rounded border border-purple-500/30 whitespace-nowrap
-                          ${i === 2 
-                            ? 'top-full left-1/2 -translate-x-1/2 mt-3' 
-                            : 'top-1/2 left-full ml-4 -translate-y-1/2'
-                          }
-                       `}>
-                          RESEARCH
-                       </div>
-                    </div>
-                    <div className="flex-1">
-                       <div className="text-4xl font-bold text-white/10 absolute -top-4 right-16 -z-10">{step.id}</div>
-                       <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                       <p className="text-sm text-white-dim leading-relaxed">{step.desc}</p>
-                    </div>
+              <div className="flex justify-between items-start">
+                 <div className="p-3 bg-white/20 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg">
+                    <data.icon size={32} className="text-white drop-shadow-md" />
                  </div>
-              </motion.div>
-           ))}
-
-           {/* --- DESIGN NODES (RIGHT) --- */}
-           {DESIGN_STEPS.map((step, i) => (
-              <motion.div 
-                 key={`des-${i}`}
-                 className="absolute"
-                 style={{ 
-                    top: `${15 + i * 30}%`, 
-                    left: i === 0 ? '1030px' : i === 1 ? '930px' : '830px',
-                    x: '-50%' 
-                 }}
-                 initial={{ opacity: 0, x: 50 }}
-                 whileInView={{ opacity: 1, x: '-50%' }}
-                 viewport={{ margin: "-100px" }}
-                 transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                 <div className="flex items-center gap-6 w-[400px]">
-                    <div className="relative">
-                       <div className="w-12 h-12 rounded-full bg-black border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_20px_rgba(16,185,129,0.4)] z-10 relative">
-                          {React.createElement(step.icon, { size: 20 })}
-                       </div>
-                       <div className={`absolute text-xs font-mono text-primary font-bold tracking-widest bg-black px-2 py-1 rounded border border-primary/30 whitespace-nowrap
-                          ${i === 2 
-                            ? 'top-full left-1/2 -translate-x-1/2 mt-3' 
-                            : 'top-1/2 right-full mr-4 -translate-y-1/2'
-                          }
-                       `}>
-                          DESIGN
-                       </div>
-                    </div>
-                    <div className="flex-1">
-                       <div className="text-4xl font-bold text-white/10 absolute -top-4 left-16 -z-10">{step.id}</div>
-                       <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                       <p className="text-sm text-white-dim leading-relaxed">{step.desc}</p>
-                    </div>
+                 <div className="px-3 py-1 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-xs font-bold text-white uppercase tracking-wider">
+                    {data.count} Projects
                  </div>
-              </motion.div>
-           ))}
-
-           {/* --- CONVERGENCE POINT --- */}
-           <motion.div 
-              className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[500px] flex flex-col items-center text-center"
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ margin: "-50px" }}
-           >
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-primary flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.3)] mb-6 relative z-10">
-                 <Rocket size={40} className="text-white" />
-                 {/* Ripple */}
-                 <div className="absolute inset-0 rounded-full border border-white/50 animate-ping opacity-20" />
               </div>
-              <h3 className="text-3xl font-bold text-white mb-2">Deliver</h3>
-              <p className="text-white-dim text-lg">Complete design system, interactive prototypes, and documentation ready for development.</p>
-           </motion.div>
 
+              <div>
+                 <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">{data.name}</h3>
+                 <div className="h-1 w-12 bg-white/50 rounded-full" />
+              </div>
+           </div>
         </div>
 
-        {/* --- MOBILE VERTICAL TIMELINE --- */}
-        <div className="lg:hidden relative border-l-2 border-white/10 ml-4 space-y-12 pb-12">
-            {[
-               { ...RESEARCH_STEPS[0], type: 'research' },
-               { ...DESIGN_STEPS[0], type: 'design' },
-               { ...RESEARCH_STEPS[1], type: 'research' },
-               { ...DESIGN_STEPS[1], type: 'design' },
-               { ...RESEARCH_STEPS[2], type: 'research' },
-               { ...DESIGN_STEPS[2], type: 'design' },
-            ].map((step, i) => (
-               <AnimatedSection key={i} className="relative pl-8">
-                  {/* Node */}
-                  <div className={`absolute -left-[21px] top-0 w-10 h-10 rounded-full bg-black border-2 flex items-center justify-center shadow-lg
-                     ${step.type === 'research' ? 'border-purple-500 text-purple-500' : 'border-primary text-primary'}
-                  `}>
-                     {React.createElement(step.icon, { size: 18 })}
-                  </div>
-                  
-                  {/* Label */}
-                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border mb-2 inline-block
-                     ${step.type === 'research' ? 'text-purple-500 border-purple-500/30 bg-purple-500/10' : 'text-primary border-primary/30 bg-primary/10'}
-                  `}>
-                     {step.type}
-                  </span>
+        {/* BACK SIDE */}
+        <div 
+          className="absolute inset-0 rounded-3xl bg-[#0A0A0A] overflow-hidden border border-white/10"
+          style={{ transform: "rotateY(180deg)", backfaceVisibility: 'hidden' }}
+        >
+           {/* Mock Video Background */}
+           <div className="absolute inset-0">
+              <div className={`absolute inset-0 bg-gradient-to-br ${data.gradient} opacity-20`} />
+              <motion.div 
+                 className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"
+                 animate={{ scale: [1, 1.1, 1] }}
+                 transition={{ duration: 10, repeat: Infinity }}
+              />
+              {/* Animated abstract shapes to simulate video content */}
+              <motion.div 
+                 className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-white/5 to-transparent rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"
+                 animate={{ rotate: 360 }}
+                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+           </div>
+           
+           {/* Dark Overlay */}
+           <div className="absolute inset-0 bg-black/60" />
 
-                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-sm text-white-dim leading-relaxed">{step.desc}</p>
-               </AnimatedSection>
-            ))}
+           {/* Content */}
+           <div className="relative h-full p-6 flex flex-col items-center justify-center text-center z-10">
+              <div className="text-sm font-bold text-white/50 uppercase tracking-widest mb-2">{data.name}</div>
+              <p className="text-white text-lg font-medium leading-relaxed mb-6">{data.desc}</p>
+              
+              {/* Clients */}
+              <div className="flex gap-4 mb-8">
+                 {data.clients.map((ClientIcon: any, i: number) => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70">
+                       <ClientIcon size={14} />
+                    </div>
+                 ))}
+              </div>
 
-            {/* Mobile Convergence */}
-            <AnimatedSection className="relative pl-8 pt-8">
-               <div className="absolute -left-[25px] top-8 w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-primary flex items-center justify-center text-white shadow-lg">
-                  <Rocket size={20} />
-               </div>
-               <h3 className="text-2xl font-bold text-white mb-2">Deliver</h3>
-               <p className="text-sm text-white-dim leading-relaxed">Complete design system, interactive prototypes, and documentation ready for development.</p>
-            </AnimatedSection>
+              <div className="mt-auto">
+                 <Link to="/work" className="px-6 py-2 bg-white text-black font-bold rounded-full text-sm hover:scale-105 transition-transform flex items-center gap-2">
+                    Explore Projects <ArrowRight size={14} />
+                 </Link>
+              </div>
+           </div>
         </div>
+      </motion.div>
+    </div>
+  );
+};
 
-      </div>
+const IndustriesFlipSection = () => {
+  return (
+    <section className="py-24 bg-[#050505] relative overflow-hidden">
+       <div className="max-w-7xl mx-auto px-6 relative z-10">
+          
+          <AnimatedSection className="text-center mb-20">
+             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                Industries We've <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x">Transformed</span>
+             </h2>
+             <p className="text-white-dim text-xl">8 Industries. Endless Possibilities.</p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+             {INDUSTRIES_FLIP_DATA.map((industry, index) => (
+                <AnimatedSection key={industry.id} delay={index * 0.1}>
+                   <FlipCard data={industry} index={index} />
+                </AnimatedSection>
+             ))}
+          </div>
+
+       </div>
     </section>
   );
 };
@@ -736,11 +740,11 @@ const UiUxDesignPage: React.FC = () => {
       {/* Our Expertise Radial Section */}
       <UiUxExpertise />
 
-      {/* Our Process Section (Dual Track) */}
-      <UiUxProcess />
-
       {/* Selected Work Section */}
       <UiUxSelectedWork />
+
+      {/* Industries We Serve Section (NEW) */}
+      <IndustriesFlipSection />
 
       {/* Why Flowrax Section */}
       <WhyChooseUs />
